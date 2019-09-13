@@ -13,8 +13,7 @@
     "koa": "^2.8.1",
     "koa-router": "^7.4.0",
     "pg": "^7.12.1",
-    "pg-hstore": "^2.3.3",
-    "sequelize": "^5.18.4"
+    "pg-hstore": "^2.3.3"
   },
   "scripts": {
     "dev": "npx nodemon ts-node-dev --respawn --transpileOnly ./src/app.ts",
@@ -39,8 +38,6 @@
     "eslint-plugin-react": "^7.11.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "nodemon": "^1.19.2",
-    "sequelize-cli": "^5.5.1",
-    "sequelize-cli-typescript": "^3.2.0-c",
     "ts-node-dev": "^1.0.0-pre.42",
     "typescript": "^3.6.3"
   }
