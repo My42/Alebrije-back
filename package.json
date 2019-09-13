@@ -6,9 +6,15 @@
   "author": "Vincent Mesquita <vincent@go-aos.io>",
   "license": "MIT",
   "dependencies": {
+    "@types/bluebird": "^3.5.27",
+    "@types/node": "^12.7.5",
+    "@types/validator": "^10.11.3",
     "express": "^4.17.1",
     "koa": "^2.8.1",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.18.4"
   },
   "scripts": {
     "dev": "npx ts-node-dev --respawn --transpileOnly ./src/app.ts",
