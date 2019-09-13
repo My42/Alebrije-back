@@ -3,8 +3,9 @@
    "host": "localhost",
    "port": 5432,
    "database": "alebrije",
-   "synchronize": true,
+   "synchronize": false,
    "logging": false,
+   "migrationsTableName": "migrations",
    "entities": [
       "src/imports/database/entity/**/*.ts"
    ],
