@@ -13,7 +13,9 @@
     "koa": "^2.8.1",
     "koa-router": "^7.4.0",
     "pg": "^7.12.1",
-    "pg-hstore": "^2.3.3"
+    "pg-hstore": "^2.3.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.18"
   },
   "scripts": {
     "dev": "npx nodemon ts-node-dev --respawn --transpileOnly ./src/app.ts",

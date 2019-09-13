@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import Router from 'koa-router';
 import './imports/database/index';
+import 'reflect-metadata';
 
 const app: Koa = new Koa();
 const router: Router = new Router();
