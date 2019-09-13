@@ -1,13 +1,15 @@
-// lib/app.ts
-import express = require('express');
+import Koa from 'koa';
+import Router from 'koa-router';
 
-// Create a new express application instance
-const app: express.Application = express();
+const app : Koa = new Koa();
+const router : Router = new Router();
 
-app.get('/', function (req, res) {
-    res.send('Hello Lucas!');
+router.get('/*', async (ctx) => {
+    ctx.body = 'Hello World!dsqdsq';
 });
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
-});
+app.use(router.routes());
+
+app.listen(3000);
+
+console.log('Server running on port 3000');
