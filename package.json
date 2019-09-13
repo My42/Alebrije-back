@@ -38,6 +38,7 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
     "nodemon": "^1.19.2",
+    "sequelize-cli": "^5.5.1",
     "ts-node-dev": "^1.0.0-pre.42",
     "typescript": "^3.6.3"
   }
