@@ -1,5 +1,7 @@
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
+import { ApolloServer } from 'apollo-server';
+import { typeDefs, resolvers } from './imports/graphql';
 import User from './imports/database/entity/User';
 
 createConnection().then(async connection => {
@@ -16,4 +18,7 @@ createConnection().then(async connection => {
   console.log('Loaded users: ', users);
 
   console.log('Here you can setup and run express/koa/any other framework.');
+  const server = new ApolloServer({ typeDefs, resolvers });
+  const { url } = await server.listen();
+  console.log(`🚀  Server ready at ${url}`);
 }).catch(error => console.log(error));
