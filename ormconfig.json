@@ -6,13 +6,13 @@
    "synchronize": true,
    "logging": false,
    "entities": [
-      "src/entity/**/*.ts"
+      "src/imports/database/entity/**/*.ts"
    ],
    "migrations": [
-      "src/migration/**/*.ts"
+      "src/imports/database/migration/**/*.ts"
    ],
    "subscribers": [
-      "src/subscriber/**/*.ts"
+      "src/imports/database/subscriber/**/*.ts"
    ],
    "cli": {
       "entitiesDir": "src/entity",
