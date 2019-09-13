@@ -1,10 +1,10 @@
-import {Sequelize} from "sequelize";
+import { Sequelize } from 'sequelize';
 
-const db = new Sequelize("postgresql://localhost/alebrije");
+const db = new Sequelize('postgresql://localhost/alebrije');
 
-db.authenticate().then(function(err : any) {
-    if (err) return console.log(err);
-    console.log('Database authenticated');
+db.authenticate().then((err : any) => {
+  if (err) console.log(err);
+  else console.log('Database authenticated');
 });
 
 export default db;

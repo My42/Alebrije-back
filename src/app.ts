@@ -1,12 +1,12 @@
 import Koa from 'koa';
 import Router from 'koa-router';
-import db from './imports/database';
+import './imports/database/index';
 
-const app : Koa = new Koa();
-const router : Router = new Router();
+const app: Koa = new Koa();
+const router: Router = new Router();
 
 router.get('/*', async (ctx) => {
-    ctx.body = 'Hello World!dsqdsq';
+  ctx.body = 'Hello World!dsqdsq';
 });
 
 app.use(router.routes());
