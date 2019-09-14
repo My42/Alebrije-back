@@ -1,9 +1,11 @@
+import signUp from './signUp';
+
 const resolvers = {
   Query: {
     me: () => 'me',
   },
   Mutation: {
-    signUp: () => ({ code: '200', success: true, message: 'msg' }),
+    signUp,
     signIn: () => ({ code: '200', success: true, message: 'msg' }),
   },
 };
