@@ -1,17 +1,13 @@
 /* eslint-disable class-methods-use-this */
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface, QueryRunner, Table, TableIndex,
+} from 'typeorm';
 
 export default class CreateUser1568395796597 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {
-    return queryRunner.createTable(new Table({
+    await queryRunner.createTable(new Table({
       name: 'user',
       columns: [
-        {
-          name: 'id',
-          type: 'int',
-          isPrimary: true,
-          generationStrategy: 'increment',
-        },
         {
           name: 'fullName',
           type: 'varchar',
@@ -30,9 +26,10 @@ export default class CreateUser1568395796597 implements MigrationInterface {
         },
       ],
     }), true);
+    await queryRunner.query('ALTER TABLE "user" ADD COLUMN id SERIAL PRIMARY KEY;\n');
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    return queryRunner.dropTable('user');
+    await queryRunner.dropTable('user');
   }
 }
