@@ -7,6 +7,6 @@ export default interface MutationResponse {
 }
 
 export interface SignInMutationResponse extends MutationResponse {
-  token: string;
-  me: User;
+  token?: string;
+  me?: User;
 }
