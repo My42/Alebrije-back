@@ -1,5 +1,6 @@
 import { getConnection } from 'typeorm';
 import User from '../../database/entity/User';
+import MutationResponse from "../interfaces/MutationResponse";
 
 interface signUpArgs {
   fullName: string;
@@ -7,7 +8,7 @@ interface signUpArgs {
   password: string;
 }
 
-const signUp = async (_, args) => {
+const signUp = async (_, args) : Promise<MutationResponse> => {
   const { fullName, email, password } : signUpArgs = args.input;
 
   try {
