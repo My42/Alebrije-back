@@ -30,9 +30,14 @@ const typedefs = gql`
       password: String!
   }
   
+  input SignInMutationInput {
+      email: String!
+      password: String!
+  }
+  
   type Mutation {
     signUp(input: SignUpMutationInput!): SignUpMutationResponse
-    signIn: SignInMutationResponse
+    signIn(input: SignInMutationInput!): SignInMutationResponse
   }
 `;
 

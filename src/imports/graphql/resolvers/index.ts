@@ -1,4 +1,5 @@
 import signUp from './signUp';
+import signIn from './signIn';
 
 const resolvers = {
   Query: {
@@ -6,7 +7,7 @@ const resolvers = {
   },
   Mutation: {
     signUp,
-    signIn: () => ({ code: '200', success: true, message: 'msg' }),
+    signIn,
   },
 };
 
