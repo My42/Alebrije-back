@@ -1,7 +1,7 @@
 import { getConnection } from 'typeorm';
 import { sign } from 'jsonwebtoken';
 import User from '../../database/entity/User';
-import { SignInMutationResponse } from '../interfaces/MutationResponse';
+import { SignInMutationResponse } from '../interfaces/IMutationResponse';
 
 interface signInArgs {
   email: string;

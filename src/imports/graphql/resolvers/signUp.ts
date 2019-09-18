@@ -1,6 +1,7 @@
 import { getConnection } from 'typeorm';
 import User from '../../database/entity/User';
-import MutationResponse from "../interfaces/MutationResponse";
+import IMutationResponse from '../interfaces/IMutationResponse';
+import sqlErrorToMutationResponse from '../../database/sqlErrorToMutationResponse';
 
 interface signUpArgs {
   fullName: string;
@@ -8,7 +9,7 @@ interface signUpArgs {
   password: string;
 }
 
-const signUp = async (_, args) : Promise<MutationResponse> => {
+const signUp = async (_, args) : Promise<IMutationResponse> => {
   const { fullName, email, password } : signUpArgs = args.input;
 
   try {
@@ -22,7 +23,7 @@ const signUp = async (_, args) : Promise<MutationResponse> => {
       .execute();
     return ({ code: '200', success: true, message: 'Sign up Succeed' });
   } catch (e) {
-    return ({ code: '409', success: false, message: 'Email already used' });
+    return sqlErrorToMutationResponse(e);
   }
 };
 
