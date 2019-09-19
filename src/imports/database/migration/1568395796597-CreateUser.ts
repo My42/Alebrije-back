@@ -9,9 +9,10 @@ export default class CreateUser1568395796597 implements MigrationInterface {
         "fullName" varchar(255) NOT NULL,
         "email" varchar(255) NOT NULL,
         "password" varchar(255) NOT NULL,
+        
         CONSTRAINT "pk__user__id" PRIMARY KEY (id),
-        CONSTRAINT "prosper__user__email" CHECK (email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$'),
-        CONSTRAINT "uq__user__email" UNIQUE (email)
+        CONSTRAINT "prosper__user__email" CHECK ("email" ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$'),
+        CONSTRAINT "uq__user__email" UNIQUE ("email")
       )
     `);
   }
