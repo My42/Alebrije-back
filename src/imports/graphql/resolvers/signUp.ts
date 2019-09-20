@@ -1,3 +1,4 @@
+import { hash } from 'bcryptjs';
 import { getConnection } from 'typeorm';
 import User from '../../database/entity/User';
 import IMutationResponse from '../interfaces/IMutationResponse';
@@ -11,14 +12,17 @@ interface signUpArgs {
 
 const signUp = async (_, args) : Promise<IMutationResponse> => {
   const { fullName, email, password } : signUpArgs = args.input;
-
   try {
     await getConnection()
       .createQueryBuilder()
       .insert()
       .into(User)
       .values([
-        { fullName, email, password },
+        {
+          fullName,
+          email,
+          password: await hash(password, parseInt(process.env.BCRYPT_SALT, 10) || 8),
+        },
       ])
       .execute();
     return ({ code: '200', success: true, message: 'Sign up Succeed' });
