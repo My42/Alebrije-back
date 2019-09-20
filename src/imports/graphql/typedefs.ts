@@ -6,12 +6,19 @@ const typedefs = gql`
       success: Boolean!
       message: String!
   }
-
+  
+  type User {
+      id: Int
+      email: String!
+      fullName: String!
+  }
+  
   type SignInMutationResponse implements MutationResponse {
       code: String!
       success: Boolean!
       message: String!
       token: String
+      me: User
   }
   
   type SignUpMutationResponse implements MutationResponse {
