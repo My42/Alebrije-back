@@ -4,10 +4,10 @@ import signIn from './signIn';
 const resolvers = {
   Query: {
     me: () => 'me',
+    signIn,
   },
   Mutation: {
     signUp,
-    signIn,
   },
 };
 
