@@ -36,7 +36,7 @@ createConnection().then(async connection => {
     typeDefs,
     resolvers,
     context: () => ({
-      db: connection,
+      db: getConnection().createQueryBuilder(),
     }),
   });
   const { url } = await server.listen();
