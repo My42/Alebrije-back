@@ -26,6 +26,13 @@ const typedefs = gql`
         success: Boolean!
         message: String!
     }
+    
+    type ForgotPasswordResponse implements MutationResponse {
+        code: String!
+        message: String!
+        success: Boolean!
+        token: String # TODO: remove this field
+    }
 
     input SignUpMutationInput {
         fullName: String!
@@ -38,6 +45,12 @@ const typedefs = gql`
         password: String!
     }
 
+    input ForgotPasswordMutationInput {
+        email: String!
+        token: String
+        newPassword: String
+    }
+    
     type Query {
         me: String
         signIn(input: SignInQueryInput!): SignInQueryResponse
@@ -45,6 +58,7 @@ const typedefs = gql`
 
     type Mutation {
         signUp(input: SignUpMutationInput!): SignUpMutationResponse
+        forgotPassword(input: ForgotPasswordMutationInput!): ForgotPasswordResponse
     }
 `;
 
