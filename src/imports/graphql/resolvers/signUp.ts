@@ -1,5 +1,3 @@
-import { hash } from 'bcryptjs';
-import { getConnection } from 'typeorm';
 import User from '../../database/entity/User';
 import IMutationResponse from '../interfaces/IMutationResponse';
 import sqlErrorToMutationResponse from '../../database/sqlErrorToMutationResponse';
@@ -10,21 +8,11 @@ interface signUpArgs {
   password: string;
 }
 
-const signUp = async (_, args) : Promise<IMutationResponse> => {
+const signUp = async (_, args, ctx) : Promise<IMutationResponse> => {
   const { fullName, email, password } : signUpArgs = args.input;
   try {
-    await getConnection()
-      .createQueryBuilder()
-      .insert()
-      .into(User)
-      .values([
-        {
-          fullName,
-          email,
-          password: await hash(password, parseInt(process.env.BCRYPT_SALT, 10) || 8),
-        },
-      ])
-      .execute();
+    const user = new User({ email, fullName, password });
+    await ctx.db.save(user);
     return ({ code: '200', success: true, message: 'Sign up Succeed' });
   } catch (e) {
     return sqlErrorToMutationResponse(e);

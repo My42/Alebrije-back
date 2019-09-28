@@ -1,5 +1,4 @@
 import { compare } from 'bcryptjs';
-import { getConnection } from 'typeorm';
 import { sign } from 'jsonwebtoken';
 import User from '../../database/entity/User';
 import { SignInMutationResponse } from '../interfaces/IMutationResponse';
@@ -9,14 +8,11 @@ interface signInArgs {
   password: string;
 }
 
-const signIn = async (_, args) : Promise<SignInMutationResponse> => {
+const signIn = async (_, args, ctx) : Promise<SignInMutationResponse> => {
   const { email, password } : signInArgs = args.input;
   try {
-    const user = await getConnection()
-      .getRepository(User)
-      .createQueryBuilder('user')
-      .where('user.email = :email', { email })
-      .getOne();
+    const user = await ctx.db.findOne(User, { email });
+    console.dir(user, { colors: true });
     if (!user) return { code: '401', success: false, message: 'Invalid email or password' };
     if (!await compare(password, user.password)) return { code: '401', success: false, message: 'Invalid email or password' };
     const token = await sign({ me: user }, 'secretKey', { expiresIn: '2 days' });
