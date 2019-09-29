@@ -9,7 +9,8 @@ export class CreateReservation1569719332995 implements MigrationInterface {
         "date" TIMESTAMPTZ NOT NULL,
         "tableNumber" integer NOT NULL,
         
-        CONSTRAINT "pk__reservation__id" PRIMARY KEY (id)
+        CONSTRAINT "pk__reservation__id" PRIMARY KEY (id),
+        CONSTRAINT "uq__reservation__date__tableNumber" UNIQUE ("date", "tableNumber")
       )
     `);
   }
