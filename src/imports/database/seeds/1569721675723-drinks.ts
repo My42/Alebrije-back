@@ -9,6 +9,6 @@ export class drinks1569721675723 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.query('TRUNCATE TABLE public.drink CASCADE;');
+    await queryRunner.query('TRUNCATE TABLE public.drink RESTART IDENTITY CASCADE;');
   }
 }

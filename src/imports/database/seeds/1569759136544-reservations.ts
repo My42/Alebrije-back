@@ -9,6 +9,6 @@ export class reservations1569759136544 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.query('TRUNCATE TABLE public.reservation CASCADE;');
+    await queryRunner.query('TRUNCATE TABLE public.reservation RESTART IDENTITY CASCADE;');
   }
 }

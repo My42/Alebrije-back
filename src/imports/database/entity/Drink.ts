@@ -2,8 +2,9 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 class Drink {
-  constructor(args?: { label: string, price: number, isSoft: boolean, volume: number }) {
+  constructor(args?: { id?: number, label: string, price: number, isSoft: boolean, volume: number }) {
     if (args) {
+      if (args.id) this.id = args.id;
       this.label = args.label;
       this.price = args.price;
       this.isSoft = args.isSoft;
