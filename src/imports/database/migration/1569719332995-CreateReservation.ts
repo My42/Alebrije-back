@@ -6,7 +6,7 @@ export class CreateReservation1569719332995 implements MigrationInterface {
     await queryRunner.query(`
       CREATE TABLE public.reservation (
         id SERIAL NOT NULL,
-        "date" TIMESTAMPTZ NOT NULL,
+        "date" date NOT NULL,
         "tableNumber" integer NOT NULL,
         
         CONSTRAINT "pk__reservation__id" PRIMARY KEY (id),

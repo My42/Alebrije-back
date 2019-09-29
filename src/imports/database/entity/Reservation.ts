@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 class Reservation {
-  constructor(args?: { date: number, tableNumber: number }) {
+  constructor(args?: { date: Date, tableNumber: number }) {
     if (args) {
       this.date = args.date;
       this.tableNumber = args.tableNumber;
@@ -13,7 +13,7 @@ class Reservation {
   id!: number;
 
   @Column()
-  date!: number;
+  date!: Date;
 
   @Column()
   tableNumber!: number;
