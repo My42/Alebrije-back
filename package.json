@@ -36,7 +36,9 @@
       "migration.create": "npx ts-node ./node_modules/typeorm/cli.js migration:create -n",
       "migration.up": "npx ts-node ./node_modules/typeorm/cli.js migration:run",
       "migration.down": "npx ts-node ./node_modules/typeorm/cli.js migration:revert",
-      "subscriber.create": "npx ts-node ./node_modules/typeorm/cli.js subscriber:create -n"
+      "seed.create": "npx ts-node ./node_modules/typeorm/cli.js migration:create -c seed -n",
+      "seed.run": "npx ts-node ./node_modules/typeorm/cli.js migration:run -c seed",
+      "seed.revert": "npx ts-node ./node_modules/typeorm/cli.js migration:revert -c seed"
    },
    "devDependencies": {
       "@types/express": "^4.17.1",
