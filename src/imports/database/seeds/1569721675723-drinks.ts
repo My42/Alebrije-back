@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export,class-methods-use-this */
-import { MigrationInterface, getRepository, getConnection } from 'typeorm';
+import { MigrationInterface, getConnection, QueryRunner } from 'typeorm';
 import Drink from '../entity/Drink';
 import drinks from './data/drinks';
 
@@ -8,7 +8,7 @@ export class drinks1569721675723 implements MigrationInterface {
     await getConnection('seed').getRepository(Drink).save(drinks);
   }
 
-  public async down(): Promise<any> {
-    await getRepository(Drink).clear();
+  public async down(queryRunner: QueryRunner): Promise<any> {
+    await queryRunner.query('TRUNCATE TABLE public.drink CASCADE;');
   }
 }
