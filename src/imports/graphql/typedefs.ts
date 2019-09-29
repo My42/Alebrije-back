@@ -34,6 +34,12 @@ const typedefs = gql`
         token: String # TODO: remove this field
     }
 
+    type Reservation {
+        id: Int!,
+        date: String!,
+        tableNumber: Int!,
+    }
+    
     input SignUpMutationInput {
         fullName: String!
         email: String!
@@ -50,10 +56,16 @@ const typedefs = gql`
         token: String
         newPassword: String
     }
+
+    input ReservationsQueryInput {
+        month: Int
+        year: Int
+    }
     
     type Query {
         me: String
         signIn(input: SignInQueryInput!): SignInQueryResponse
+        reservations(input: ReservationsQueryInput!) : [Reservation]
     }
 
     type Mutation {
