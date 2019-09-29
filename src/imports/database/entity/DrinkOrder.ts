@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity()
+@Entity('drinkOrder')
 class DrinkOrder {
   constructor(args?: { reservationId: number, drinkId: number }) {
     if (args) {
