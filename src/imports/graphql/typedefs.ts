@@ -34,10 +34,23 @@ const typedefs = gql`
         token: String # TODO: remove this field
     }
 
+    type Drink {
+        id: Int!
+        label: String!
+        price: Int!
+        volume: Int!
+    }
+    
     type Reservation {
         id: Int!,
         date: String!,
         tableNumber: Int!,
+        drinkOrders: [DrinkOrder]
+    }
+    
+    type DrinkOrder {
+        drink: Drink
+        quantity: Int
     }
     
     input SignUpMutationInput {
