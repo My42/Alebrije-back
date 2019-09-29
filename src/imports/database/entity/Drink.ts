@@ -7,6 +7,7 @@ class Drink {
       this.label = args.label;
       this.price = args.price;
       this.isSoft = args.isSoft;
+      this.volume = args.volume;
     }
   }
 
