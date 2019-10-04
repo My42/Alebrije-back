@@ -2,16 +2,18 @@ import signUp from './signUp';
 import signIn from './signIn';
 import forgotPassword from './forgotPassword';
 import reservations from './reservations';
+import addReservation from "./addReservation";
 
 const resolvers = {
   Query: {
     me: () => 'me',
-    signIn,
     reservations,
+    signIn,
   },
   Mutation: {
-    signUp,
+    addReservation,
     forgotPassword,
+    signUp,
   },
 };
 
