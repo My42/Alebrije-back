@@ -2,11 +2,12 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 class Reservation {
-  constructor(args?: { id?: number, date: Date, tableNumber: number }) {
+  constructor(args?: { id?: number, date: Date, tableNumber: number, userId: number }) {
     if (args) {
       if (args.id) this.id = args.id;
       this.date = args.date;
       this.tableNumber = args.tableNumber;
+      this.userId = args.userId;
     }
   }
 
@@ -18,6 +19,9 @@ class Reservation {
 
   @Column()
   tableNumber!: number;
+
+  @Column()
+  userId!: number;
 }
 
 export default Reservation;
