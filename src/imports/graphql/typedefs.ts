@@ -40,6 +40,12 @@ const typedefs = gql`
         token: String # TODO: remove this field
     }
 
+    type CancelReservationMutationResponse implements MutationResponse {
+        code: String!
+        message: String!
+        success: Boolean!
+    }
+
     type Drink {
         id: Int!
         label: String!
@@ -92,6 +98,10 @@ const typedefs = gql`
         drinkOrders: [DrinkOrderInput]
     }
     
+    input CancelReservationMutationInput {
+        id: Int
+    }
+    
     type Query {
         me: String
         signIn(input: SignInQueryInput!): SignInQueryResponse
@@ -101,7 +111,8 @@ const typedefs = gql`
     type Mutation {
         signUp(input: SignUpMutationInput!): SignUpMutationResponse
         forgotPassword(input: ForgotPasswordMutationInput!): ForgotPasswordResponse
-      addReservation(input: AddReservationMutationInput!): AddReservationMutationResponse
+        addReservation(input: AddReservationMutationInput!): AddReservationMutationResponse
+        cancelReservation(input: CancelReservationMutationInput!): CancelReservationMutationResponse
     }
 `;
 
