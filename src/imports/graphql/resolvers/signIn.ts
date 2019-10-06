@@ -2,6 +2,7 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import User from '../../database/entity/User';
 import { SignInMutationResponse } from '../interfaces/IMutationResponse';
+import config from "../../config/app";
 
 interface signInArgs {
   email: string;
@@ -15,7 +16,7 @@ const signIn = async (_, args, ctx) : Promise<SignInMutationResponse> => {
     console.dir(user, { colors: true });
     if (!user) return { code: '401', success: false, message: 'Invalid email or password' };
     if (!await compare(password, user.password)) return { code: '401', success: false, message: 'Invalid email or password' };
-    const token = await sign({ me: user }, 'secretKey', { expiresIn: '2 days' });
+    const token = await sign({ user }, config.jwtSecretKey, { expiresIn: '2 days' });
     return {
       code: '200', success: true, message: 'Authentication succeed', me: user, token,
     };
