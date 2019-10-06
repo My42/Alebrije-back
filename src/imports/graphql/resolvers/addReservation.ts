@@ -5,6 +5,7 @@ import IMutationResponse from '../interfaces/IMutationResponse';
 import DrinkOrderEntity from '../../database/entity/DrinkOrder';
 import Reservation from '../../database/entity/Reservation';
 import checkTableNumber from '../../utils/checkTableNumber';
+import getUser from "../../utils/getUser";
 
 
 export interface DrinkOrder {
@@ -20,6 +21,7 @@ export interface AddReservationInput {
 
 const addReservation = async (_, args, ctx): Promise<IMutationResponse> => {
   const { input } : { input: AddReservationInput } = args;
+  const user = await getUser(ctx.jwtToken, ctx.db);
   let date = null;
   try {
     date = formatDate(
@@ -32,7 +34,7 @@ const addReservation = async (_, args, ctx): Promise<IMutationResponse> => {
 
   if (!checkTableNumber(input.tableNumber)) return { code: '400', success: false, message: 'Invalid table number' };
 
-  const reservation = new Reservation({ date, tableNumber: input.tableNumber });
+  const reservation = new Reservation({ date, tableNumber: input.tableNumber, userId: user.id });
   try {
     await ctx.db.save(reservation);
   } catch (e) {
