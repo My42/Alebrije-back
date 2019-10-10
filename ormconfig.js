@@ -14,6 +14,7 @@ module.exports = [
     database: connectionOptions.database || 'alebrije',
     synchronize: false,
     extra: { ssl: true },
+    ssl: true,
     logging: false,
     migrationsTableName: 'migrations',
     entities: [
@@ -41,6 +42,7 @@ module.exports = [
     database: connectionOptions.database || 'alebrije',
     synchronize: false,
     extra: { ssl: true },
+    ssl: true,
     logging: false,
     migrationsTableName: 'seeds',
     entities: [
