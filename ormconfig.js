@@ -21,7 +21,7 @@ fs.readdir(__dirname + '/imports/database/entity/'
     });
     console.log("2____________________________")
   });
-fs.readdir(__dirname + '/src/imports/database/entity/'
+fs.readdir(__dirname + '/build/imports/database/entity/'
   , (err, files) => {
     console.log("3____________________________")
     if (err) return console.log(err)
@@ -43,7 +43,7 @@ module.exports = [
     entities: [
       [
         __dirname + '/src/imports/database/entity/**/*.{js,ts}',
-        __dirname + '/imports/database/entity/**/*.{js,ts}'
+        __dirname + '/build/imports/database/entity/**/*.{js,ts}'
       ]
     ],
     cli: {
