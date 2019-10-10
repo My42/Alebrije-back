@@ -24,7 +24,7 @@ module.exports = [
     logging: false,
     migrationsTableName: 'seeds',
     entities: [
-      'src/imports/database/entity/**/*.ts',
+      [__dirname + '/../**/*.entity.{js,ts}'],
     ],
     migrations: [
       'src/imports/database/seeds/*.ts',
