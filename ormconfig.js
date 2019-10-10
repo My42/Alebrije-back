@@ -10,10 +10,10 @@ module.exports = [
       'build/src/imports/database/entity/**/*.js',
     ],
     migrations: [
-      'src/imports/database/migration/**/*.js',
+      'src/imports/database/migration/**/*.ts',
     ],
     subscribers: [
-      'src/imports/database/subscriber/**/*.js',
+      'src/imports/database/subscriber/**/*.ts',
     ],
     cli: {
       entitiesDir: 'src/imports/database/entity',
