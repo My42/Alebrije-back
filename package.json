@@ -32,6 +32,7 @@
       "uuid": "^3.3.3"
    },
    "scripts": {
+      "start": "npm run dev",
       "dev": "npx nodemon ts-node-dev --respawn --transpileOnly ./src/app.ts",
       "prod": "yarn run tsc && node ./build/app.js",
       "tsc": "tsc",
