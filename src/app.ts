@@ -9,7 +9,8 @@ createConnection().then(async () => {
     typeDefs,
     resolvers,
     context: async ({ req }) => {
-      const jwtToken = req.headers.authorization.replace('Bearer ', '');
+      const { authorization } = req.headers;
+      const jwtToken = authorization ? authorization.replace('Bearer ', '') : null;
 
       return {
         db: getManager(),
