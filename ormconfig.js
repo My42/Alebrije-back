@@ -9,6 +9,7 @@ module.exports = [
     entities: [
       [
         __dirname + '/src/imports/database/entity/**/*.ts',
+        __dirname + '/imports/database/entity/**/*.ts',
       ]
     ],
     cli: {
