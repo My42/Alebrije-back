@@ -1,4 +1,4 @@
-import * as PostgressConnectionStringParser from 'pg-connection-string';
+const PostgressConnectionStringParser = require('pg-connection-string');
 
 const connectionOptions = PostgressConnectionStringParser.parse(process.env.DATABASE_URL);
 
@@ -11,7 +11,7 @@ module.exports = [
     port: connectionOptions.port || 5432,
     username: connectionOptions.user,
     password: connectionOptions.password,
-    database: 'alebrije',
+    database: connectionOptions.database || 'alebrije',
     synchronize: false,
     logging: false,
     migrationsTableName: 'migrations',
@@ -37,7 +37,7 @@ module.exports = [
     port: connectionOptions.port || 5432,
     username: connectionOptions.user,
     password: connectionOptions.password,
-    database: 'alebrije',
+    database: connectionOptions.database || 'alebrije',
     synchronize: false,
     logging: false,
     migrationsTableName: 'seeds',
