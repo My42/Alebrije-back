@@ -44,8 +44,8 @@
       "lint": "eslint src/** --ext .ts",
       "lint.fix": "yarn run lint -- --fix",
       "migration.create": "npx ts-node ./node_modules/typeorm/cli.js migration:create -n",
-      "migration.up": "npx ts-node ./node_modules/typeorm/cli.js migration:run -f 'src/imports/database/migration/**/*.js'",
-      "migration.down": "npx ts-node ./node_modules/typeorm/cli.js migration:revert -f 'src/imports/database/migration/**/*.js'",
+      "migration.up": "npx ts-node ./node_modules/typeorm/cli.js migration:run -f 'src/imports/database/migration/**/*.ts'",
+      "migration.down": "npx ts-node ./node_modules/typeorm/cli.js migration:revert -f 'src/imports/database/migration/**/*.ts'",
       "seed.create": "npx ts-node ./node_modules/typeorm/cli.js migration:create -c seed -n",
       "seed.run": "npx ts-node ./node_modules/typeorm/cli.js migration:run -c seed",
       "seed.revert": "npx ts-node ./node_modules/typeorm/cli.js migration:revert -c seed"
