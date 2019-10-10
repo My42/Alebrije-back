@@ -36,7 +36,7 @@
    },
    "scripts": {
       "postinstall": "npm run build & npm run migration.up & npm run seed.run",
-      "start": "node ./build/app.js",
+      "start": "ts-node src/app.ts",
       "dev": "npx nodemon ts-node-dev --respawn --transpileOnly ./src/app.ts",
       "prod": "yarn run tsc && node ./build/app.js",
       "build": "tsc",
