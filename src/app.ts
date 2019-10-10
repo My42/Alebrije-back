@@ -11,12 +11,14 @@ createConnection().then(async () => {
     typeDefs,
     resolvers,
     context: async ({ req }) => {
-      console.log('hihi')
+      console.log('1')
       const { authorization } = req.headers;
       const jwtToken = authorization ? authorization.replace('Bearer ', '') : null;
-
+      console.log('2')
+      const db = getManager();
+      console.log('3')
       return {
-        db: getManager(),
+        db,
         jwtToken,
       };
     },

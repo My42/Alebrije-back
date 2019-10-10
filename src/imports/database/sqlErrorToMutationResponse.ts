@@ -4,7 +4,10 @@ import ISQLError from './interfaces/ISQLError';
 
 const sqlErrorToMutationResponse = (error: ISQLError) => {
   const response : IMutationResponse = { message: 'Internal Server Error', success: false, code: '500' };
-  if (!error.constraint) return response;
+  if (!error.constraint) {
+    console.log(error)
+    return response;
+  }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [type, table, field]: string[] = error.constraint.split(constraintsSeparator);
   // eslint-disable-next-line default-case

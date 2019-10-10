@@ -9,6 +9,7 @@ interface signUpArgs {
 }
 
 const signUp = async (_, args, ctx) : Promise<IMutationResponse> => {
+  console.log('4')
   const { fullName, email, password } : signUpArgs = args.input;
   try {
     const user = new User({ email, fullName, password });
