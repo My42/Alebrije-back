@@ -1,9 +1,3 @@
-const PostgressConnectionStringParser = require('pg-connection-string');
-
-const connectionOptions = PostgressConnectionStringParser.parse(process.env.DATABASE_URL);
-
-console.log({ connectionOptions, DATABASE_URL: process.env.DATABASE_URL });
-
 module.exports = [
   {
     type: 'postgres',
