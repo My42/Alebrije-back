@@ -42,8 +42,7 @@ module.exports = [
     migrationsTableName: 'migrations',
     entities: [
       [
-        __dirname + '/src/imports/database/entity/**/*.{js,ts}',
-        __dirname + '/build/imports/database/entity/**/*.{js,ts}'
+        __dirname + '/build/imports/database/entity/**/*.js'
       ]
     ],
     cli: {
