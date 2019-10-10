@@ -4,7 +4,7 @@ import { ApolloServer } from 'apollo-server';
 import { typeDefs, resolvers } from './imports/graphql';
 import getUser from './imports/utils/getUser';
 
-const launch = async () => {
+createConnection().then(async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -17,12 +17,8 @@ const launch = async () => {
       };
     },
   });
-  console.log('port:', process.env.PORT || 4000);
-  console.log('port heruko:', process.env.PORT);
-  const { url } = await server.listen(process.env.PORT || 4000, '0.0.0.0');
+  console.log('port:', process.env.PORT || 4000)
+  console.log('port heruko:', process.env.PORT)
+  const { url } = await server.listen(process.env.PORT || 4000);
   console.log(`🚀  Server ready at ${url}`);
-};
-
-launch()
-  .then(console.log)
-  .catch(console.log);
+}).catch(error => console.log(error));
