@@ -1,3 +1,36 @@
+const testFolder = './tests/';
+const fs = require('fs');
+__dirname + '/src/imports/database/entity/**/*.{js,ts}',
+__dirname + '/imports/database/entity/'
+
+fs.readdir(__dirname
+  , (err, files) => {
+    console.log("1____________________________")
+    if (err) return console.log(err)
+    files.forEach(file => {
+      console.log(file);
+    });
+    console.log("1____________________________")
+  });
+fs.readdir(__dirname + '/imports/database/entity/'
+  , (err, files) => {
+    console.log("2____________________________")
+    if (err) return console.log(err)
+    files.forEach(file => {
+      console.log(file);
+    });
+    console.log("2____________________________")
+  });
+fs.readdir(__dirname + '/src/imports/database/entity/'
+  , (err, files) => {
+    console.log("3____________________________")
+    if (err) return console.log(err)
+    files.forEach(file => {
+      console.log(file);
+    });
+    console.log("3____________________________")
+  });
+
 console.log('dirname/', __dirname)
 module.exports = [
   {
