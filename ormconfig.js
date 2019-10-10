@@ -1,13 +1,24 @@
+const databaseInfo = process.env.DATABASE_URL
+  ? { url: process.env.DATABASE_URL }
+  : {
+    port: 5432,
+    database: 'alebrije',
+  };
+const ssl = process.env.NODE_ENV === 'production';
+
 module.exports = [
   {
     type: 'postgres',
-    url: process.env.DATABASE_URL,
+    ...databaseInfo,
     synchronize: false,
-    ssl: !!process.env.DATABASE_URL,
+    ssl,
     logging: false,
     migrationsTableName: 'migrations',
     entities: [
         'src/imports/database/entity/**/*.ts',
+    ],
+    migrations: [
+      'src/imports/database/migration/**/*.ts',
     ],
     cli: {
       entitiesDir: 'src/imports/database/entity',
@@ -18,9 +29,9 @@ module.exports = [
   {
     name: 'seed',
     type: 'postgres',
-    url: process.env.DATABASE_URL,
+    ...databaseInfo,
     synchronize: false,
-    ssl: !!process.env.DATABASE_URL,
+    ssl,
     logging: false,
     migrationsTableName: 'seeds',
     entities: [
