@@ -8,7 +8,7 @@ module.exports = [
     migrationsTableName: 'migrations',
     entities: [
       [
-        __dirname + '/src/imports/database/entity/**/*ts',
+        __dirname + '/src/imports/database/entity/**/*.ts',
       ]
     ],
     cli: {
