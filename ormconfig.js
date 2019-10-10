@@ -7,7 +7,7 @@ module.exports = [
     logging: false,
     migrationsTableName: 'migrations',
     entities: [
-      [__dirname + '/../**/*.entity.{js,ts}'],
+      'build/src/imports/database/entity/**/*.js',
     ],
     cli: {
       entitiesDir: 'src/imports/database/entity',
@@ -24,7 +24,7 @@ module.exports = [
     logging: false,
     migrationsTableName: 'seeds',
     entities: [
-      [__dirname + '/../**/*.entity.{js,ts}'],
+      'src/imports/database/entity/**/*.ts',
     ],
     migrations: [
       'src/imports/database/seeds/*.ts',
