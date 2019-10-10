@@ -1,7 +1,7 @@
 module.exports = [
   {
     type: 'postgres',
-    host: 'localhost',
+    host: process.env.DATABASE_URL || 'localhost',
     port: 5432,
     database: 'alebrije',
     synchronize: false,
@@ -25,7 +25,7 @@ module.exports = [
   {
     name: 'seed',
     type: 'postgres',
-    host: 'localhost',
+    host: process.env.DATABASE_URL || 'localhost',
     port: 5432,
     database: 'alebrije',
     synchronize: false,
