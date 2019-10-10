@@ -35,11 +35,11 @@
       "uuid": "^3.3.3"
    },
    "scripts": {
-      "postinstall": "tsc",
+      "postinstall": "npm run build && npm run migration.up && npm run seed.run",
       "start": "node ./build/app.js",
       "dev": "npx nodemon ts-node-dev --respawn --transpileOnly ./src/app.ts",
       "prod": "yarn run tsc && node ./build/app.js",
-      "tsc": "tsc",
+      "build": "tsc",
       "test": "jest",
       "lint": "eslint src/** --ext .ts",
       "lint.fix": "yarn run lint -- --fix",
