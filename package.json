@@ -35,7 +35,8 @@
       "uuid": "^3.3.3"
    },
    "scripts": {
-      "start": "npx nodemon ts-node ./src/app.ts",
+      "postinstall": "tsc",
+      "start": "node ./build/app.js",
       "dev": "npx nodemon ts-node-dev --respawn --transpileOnly ./src/app.ts",
       "prod": "yarn run tsc && node ./build/app.js",
       "tsc": "tsc",

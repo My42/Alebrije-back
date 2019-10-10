@@ -3,17 +3,17 @@ module.exports = [
     type: 'postgres',
     url: process.env.DATABASE_URL,
     synchronize: false,
-    ssl: true,
+    ssl: !!process.env.DATABASE_URL,
     logging: false,
     migrationsTableName: 'migrations',
     entities: [
-      'src/imports/database/entity/**/*.ts',
+      'build/src/imports/database/entity/**/*.js',
     ],
     migrations: [
-      'src/imports/database/migration/**/*.ts',
+      'src/imports/database/migration/**/*.js',
     ],
     subscribers: [
-      'src/imports/database/subscriber/**/*.ts',
+      'src/imports/database/subscriber/**/*.js',
     ],
     cli: {
       entitiesDir: 'src/imports/database/entity',
@@ -26,7 +26,7 @@ module.exports = [
     type: 'postgres',
     url: process.env.DATABASE_URL,
     synchronize: false,
-    ssl: true,
+    ssl: !!process.env.DATABASE_URL,
     logging: false,
     migrationsTableName: 'seeds',
     entities: [
