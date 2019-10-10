@@ -12,9 +12,6 @@ module.exports = [
     migrations: [
       'src/imports/database/migration/**/*.ts',
     ],
-    subscribers: [
-      'src/imports/database/subscriber/**/*.ts',
-    ],
     cli: {
       entitiesDir: 'src/imports/database/entity',
       migrationsDir: 'src/imports/database/migration',

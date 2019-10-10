@@ -13,5 +13,9 @@
       "experimentalDecorators": true,
       "sourceMap": true,
       "esModuleInterop": true
-   }
+   },
+   "exclude": [
+      "src/imports/database/migration",
+      "src/imports/database/seeds"
+   ]
 }
