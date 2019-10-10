@@ -7,15 +7,10 @@ console.log({ connectionOptions, DATABASE_URL: process.env.DATABASE_URL });
 module.exports = [
   {
     type: 'postgres',
-    host: process.env.DATABASE_URL || 'localhost',
-    port: connectionOptions.port || 5432,
-    username: connectionOptions.user,
-    password: connectionOptions.password,
-    database: connectionOptions.database || 'alebrije',
+    url: process.env.DATABASE_URL,
     synchronize: false,
-    extra: { ssl: true },
     ssl: true,
-    logging: false,
+    logging: true,
     migrationsTableName: 'migrations',
     entities: [
       'src/imports/database/entity/**/*.ts',
@@ -35,15 +30,10 @@ module.exports = [
   {
     name: 'seed',
     type: 'postgres',
-    host: process.env.DATABASE_URL || 'localhost',
-    port: connectionOptions.port || 5432,
-    username: connectionOptions.user,
-    password: connectionOptions.password,
-    database: connectionOptions.database || 'alebrije',
+    url: process.env.DATABASE_URL,
     synchronize: false,
-    extra: { ssl: true },
     ssl: true,
-    logging: false,
+    logging: true,
     migrationsTableName: 'seeds',
     entities: [
       'src/imports/database/entity/**/*.ts',
