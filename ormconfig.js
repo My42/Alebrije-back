@@ -1,3 +1,4 @@
+console.log('dirname', __dirname)
 module.exports = [
   {
     type: 'postgres',
