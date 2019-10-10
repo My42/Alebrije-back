@@ -26,6 +26,7 @@
       "koa-router": "^7.4.0",
       "lodash": "^4.17.15",
       "pg": "^7.3.0",
+      "pg-connection-string": "^2.1.0",
       "pg-hstore": "^2.3.3",
       "reflect-metadata": "^0.1.10",
       "ts-node": "3.3.0",

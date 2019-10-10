@@ -1,8 +1,16 @@
+import * as PostgressConnectionStringParser from 'pg-connection-string';
+
+const connectionOptions = PostgressConnectionStringParser.parse(process.env.DATABASE_URL);
+
+console.log({ connectionOptions, DATABASE_URL: process.env.DATABASE_URL });
+
 module.exports = [
   {
     type: 'postgres',
     host: process.env.DATABASE_URL || 'localhost',
-    port: 5432,
+    port: connectionOptions.port || 5432,
+    username: connectionOptions.user,
+    password: connectionOptions.password,
     database: 'alebrije',
     synchronize: false,
     logging: false,
@@ -26,7 +34,9 @@ module.exports = [
     name: 'seed',
     type: 'postgres',
     host: process.env.DATABASE_URL || 'localhost',
-    port: 5432,
+    port: connectionOptions.port || 5432,
+    username: connectionOptions.user,
+    password: connectionOptions.password,
     database: 'alebrije',
     synchronize: false,
     logging: false,
