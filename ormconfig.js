@@ -1,4 +1,4 @@
-console.log('dirname', __dirname)
+console.log('dirname/', __dirname)
 module.exports = [
   {
     type: 'postgres',
@@ -9,8 +9,8 @@ module.exports = [
     migrationsTableName: 'migrations',
     entities: [
       [
-        __dirname + 'src/imports/database/entity/**/*.{js,ts}',
-        __dirname + 'imports/database/entity/**/*.{js,ts}'
+        __dirname + '/src/imports/database/entity/**/*.{js,ts}',
+        __dirname + '/imports/database/entity/**/*.{js,ts}'
       ]
     ],
     cli: {
