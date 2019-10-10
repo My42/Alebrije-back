@@ -6,9 +6,12 @@ import getUser from './imports/utils/getUser';
 
 createConnection().then(async () => {
   const server = new ApolloServer({
+    introspection: true,
+    playground: true,
     typeDefs,
     resolvers,
     context: async ({ req }) => {
+      console.log('hihi')
       const { authorization } = req.headers;
       const jwtToken = authorization ? authorization.replace('Bearer ', '') : null;
 
