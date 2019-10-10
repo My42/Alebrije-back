@@ -10,7 +10,7 @@ module.exports = [
     url: process.env.DATABASE_URL,
     synchronize: false,
     ssl: true,
-    logging: true,
+    logging: false,
     migrationsTableName: 'migrations',
     entities: [
       'src/imports/database/entity/**/*.ts',
@@ -33,7 +33,7 @@ module.exports = [
     url: process.env.DATABASE_URL,
     synchronize: false,
     ssl: true,
-    logging: true,
+    logging: false,
     migrationsTableName: 'seeds',
     entities: [
       'src/imports/database/entity/**/*.ts',
