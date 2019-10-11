@@ -18,7 +18,7 @@ class Token {
   userId!: number;
 
   @Column()
-  type!: ETokenType;
+  type!: string;
 
   @Column()
   value!: string;

@@ -4,7 +4,7 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 export class CreateToken1569192538224 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.query(`
-      CREATE TYPE public.tokenType AS ENUM (
+      CREATE TYPE public."tokenType" AS ENUM (
        'forgotPassword'
       )
     `);
@@ -12,7 +12,7 @@ export class CreateToken1569192538224 implements MigrationInterface {
       CREATE TABLE public.token (
         id SERIAL NOT NULL,
         "userId" integer NOT NULL,
-        "type" tokenType NOT NULL,
+        "type" "tokenType" NOT NULL,
         "value" varchar(255) NOT NULL,
         "createdAt" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
         
