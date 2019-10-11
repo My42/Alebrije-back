@@ -14,6 +14,7 @@ const ssl = process.env.NODE_ENV === 'production';
 
 module.exports = [
   {
+    name: 'default',
     type: 'postgres',
     ...databaseInfo,
     synchronize: false,
@@ -59,7 +60,7 @@ module.exports = [
     synchronize: false,
     ssl,
     logging: false,
-    migrationsTableName: 'seeds',
+    migrationsTableName: 'migrations',
     entities: [
       'src/imports/database/entity/**/*.ts',
     ],
