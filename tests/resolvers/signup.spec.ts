@@ -23,12 +23,13 @@ describe('signUp resolver', () => {
 
 
   before(async () => {
-    await getDatabaseConnection();
+    this.connection = await getDatabaseConnection();
     this.db = getDb();
   });
 
   after(async () => {
-    await this.db.delete(User, {})
+    await this.db.delete(User, {});
+    await this.connection.close();
   });
 
   it('should sign up the user', async () => {
