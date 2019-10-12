@@ -17,6 +17,9 @@ describe('signUp resolver', () => {
     createUser({ password: 'abcd' }),
     createUser({ password: '123456789' })
   ];
+  const incorrectUsersInvalidFullName = [
+    createUser({ fullName: '' }),
+  ];
 
 
   before(async () => {
@@ -61,7 +64,17 @@ describe('signUp resolver', () => {
       ));
     const responses = await Promise.all(promises);
     expect(responses).to.be.deep
-      .equal(new Array(incorrectUsersInvalidEmail.length)
+      .equal(new Array(incorrectUsersInvalidPassword.length)
         .fill({ code: '400', message: 'Invalid password', success: false }))
   });
+
+  it('should sign up no ones for invalid full name', async () => {
+    const promises = incorrectUsersInvalidFullName.map(user => (
+      signUpResolver(null, { input: user }, { db: this.db })
+    ));
+    const responses = await Promise.all(promises);
+    expect(responses).to.be.deep
+      .equal(new Array(incorrectUsersInvalidFullName.length)
+        .fill({ code: '400', message: 'Invalid full name', success: false }))
+  })
 });

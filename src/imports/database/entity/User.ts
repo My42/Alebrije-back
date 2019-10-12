@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { IsEmail, Length } from 'class-validator';
 import { hash } from 'bcryptjs';
+import AlebrijeError from '../../errors/AlebrijeError';
 
 @Entity()
 class User {
@@ -35,6 +36,20 @@ class User {
   @Column()
   @IsEmail()
   email: string;
+
+  @BeforeInsert()
+  async checkFullName() {
+    if (this.fullName.length === 0) {
+      throw new AlebrijeError('400', 'Invalid full name');
+    }
+  }
+
+  @BeforeInsert()
+  async checkPassword() {
+    if (!this.password.match(/(?=.*[0-9])(?=.*[!-\/])(?=.{8,})/)) {
+      throw new AlebrijeError('400', 'Invalid password');
+    }
+  }
 
   @BeforeInsert()
   @BeforeUpdate()
