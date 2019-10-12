@@ -20,7 +20,11 @@
     "plugins": [
         "@typescript-eslint"
     ],
-    "rules": {
-        "object-curly-newline": "off"
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": ["src"]
+            }
+        }
     }
 }
