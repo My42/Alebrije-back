@@ -17,6 +17,7 @@ createConnection('default').then(async () => {
       return {
         db,
         jwtToken,
+        getUser,
       };
     },
   });

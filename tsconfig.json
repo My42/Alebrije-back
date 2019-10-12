@@ -13,7 +13,10 @@
       "experimentalDecorators": true,
       "sourceMap": true,
       "esModuleInterop": true,
-      "baseUrl": "./"
+      "baseUrl": ".",
+      "paths": {
+         "imports/*": ["./src/imports/*"]
+      }
    },
    "exclude": [
       "src/imports/database/migration",

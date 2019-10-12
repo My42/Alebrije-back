@@ -1,8 +1,16 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
+export interface DrinkRows {
+  id?: number,
+  label: string,
+  price: number,
+  isSoft: boolean,
+  volume: number
+}
+
 @Entity()
 class Drink {
-  constructor(args?: { id?: number, label: string, price: number, isSoft: boolean, volume: number }) {
+  constructor(args?: DrinkRows) {
     if (args) {
       if (args.id) this.id = args.id;
       this.label = args.label;

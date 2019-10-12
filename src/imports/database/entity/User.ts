@@ -15,8 +15,10 @@ class User {
     fullName: string,
     password: string,
     email: string,
+    id?: number,
   }) {
     if (args) {
+      if (args.id) this.id = args.id;
       this.fullName = args.fullName;
       this.password = args.password;
       this.email = args.email;
