@@ -1,5 +1,11 @@
-import createUser from "./createUser";
+import createDrink from './createDrink';
+import createDrinkOrder from './createDrinkOrder';
+import createReservation from './createReservation';
+import createUser from './createUser';
 
 export {
-  createUser
+  createDrink,
+  createDrinkOrder,
+  createReservation,
+  createUser,
 };
