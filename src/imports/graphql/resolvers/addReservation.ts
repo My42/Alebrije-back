@@ -55,7 +55,7 @@ const addReservation = async (_, args, ctx): Promise<IMutationResponse> => {
       await ctx.db.save(drinkOrders);
     } catch (e) {
       await ctx.db.delete(Reservation, reservation.id);
-      return { code: '403', success: false, message: 'Invalid drink id' };
+      return { code: '400', success: false, message: 'Invalid drink id' };
     }
   }
 

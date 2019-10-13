@@ -46,7 +46,6 @@ describe('addReservation resolver', () => {
     const input: AddReservationInput = { tableNumber, date, drinkOrders: drinkOrdersInput };
 
     const resp = await addReservationResolver(null, { input }, ctx);
-    console.log(resp)
     const reservation = await this.db.findOne(Reservation, { userId: user.id });
     expect(reservation).to.not.be.equal(undefined);
     const drinkOrders = await this.db.find(DrinkOrder, {
@@ -70,14 +69,45 @@ describe('addReservation resolver', () => {
     const ctx = { getUser, db: this.db, jwtToken };
     const invalidDates = ['alebrije', '23/12/1996', formatDate(Date.now(), 'MM/dd/yyyy')];
 
-    for (let i = 0; i < invalidDates.length; i += 1) {
+    const promises = invalidDates.map(async (date) => {
       const input: AddReservationInput = {
         tableNumber: 1,
-        date: invalidDates[i],
+        date,
         drinkOrders: null,
       };
       const reps = await addReservationResolver(null, { input }, ctx);
       expect(reps).to.be.deep.equal({ code: '400', success: false, message: 'Invalid date value' });
-    } // TODO: take off the for
+    });
+    await Promise.all(promises);
+    expect(getUser.callCount).to.be.equal(invalidDates.length);
+  });
+
+  it('should fail for table already taken', async () => {
+    const getUser = sinon.fake.returns(new Promise<User>(resolve => resolve(user)));
+    const ctx = { getUser, db: this.db, jwtToken };
+    const input: AddReservationInput = {
+      tableNumber: 1,
+      date: '12/01/2020',
+      drinkOrders: null,
+    };
+    await addReservationResolver(null, { input }, ctx);
+    const resp = await addReservationResolver(null, { input }, ctx);
+    expect(resp.code).to.be.equal('403');
+    expect(resp.message).to.be.equal('Table already taken');
+    expect(resp.success).to.be.equal(false);
+  });
+
+  it('should fail for invalid drink', async () => {
+    const getUser = sinon.fake.returns(new Promise<User>(resolve => resolve(user)));
+    const ctx = { getUser, db: this.db, jwtToken };
+    const input: AddReservationInput = {
+      tableNumber: 1,
+      date: '12/01/2020',
+      drinkOrders: [{ drinkId: 42, quantity: 1 }],
+    };
+    const reps = await addReservationResolver(null, { input }, ctx);
+    expect(reps.code).to.be.equal('400');
+    expect(reps.message).to.be.equal('Invalid drink id');
+    expect(reps.success).to.be.equal(false);
   });
 });
