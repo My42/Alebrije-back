@@ -37,7 +37,6 @@ const typedefs = gql`
         code: String!
         message: String!
         success: Boolean!
-        token: String # TODO: remove this field
     }
 
     type CancelReservationMutationResponse implements MutationResponse {
