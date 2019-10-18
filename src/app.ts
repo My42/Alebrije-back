@@ -3,6 +3,7 @@ import { createConnection, getManager } from 'typeorm';
 import { ApolloServer } from 'apollo-server';
 import { typeDefs, resolvers } from './imports/graphql';
 import getUser from './imports/utils/getUser';
+import mailer from './imports/mailer';
 
 createConnection('default').then(async () => {
   const server = new ApolloServer({
@@ -18,9 +19,10 @@ createConnection('default').then(async () => {
         db,
         jwtToken,
         getUser,
+        mailer,
       };
     },
   });
-  const { url } = await server.listen(process.env.PORT || 4000);
+  const { url } = await server.listen(process.env.PORT || 4242);
   console.log(`🚀  Server ready at ${url}`);
 }).catch(error => console.log(error));
