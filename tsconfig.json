@@ -3,7 +3,7 @@
       "lib": [
          "es6"
       ],
-      "types": ["node"],
+      "types": ["node", "mocha", "jest"],
       "target": "es6",
       "module": "commonjs",
       "moduleResolution": "node",
@@ -12,10 +12,15 @@
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true,
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "baseUrl": ".",
+      "paths": {
+         "imports/*": ["./src/imports/*"]
+      }
    },
    "exclude": [
       "src/imports/database/migration",
-      "src/imports/database/seeds"
+      "src/imports/database/seeds",
+      "tests/**/*.ts"
    ]
 }

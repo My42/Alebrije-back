@@ -1,16 +1,13 @@
 import Reservation from '../../database/entity/Reservation';
 import IMutationResponse from '../interfaces/IMutationResponse';
-import getUser from '../../utils/getUser';
 
 export interface Input {
-  input: {
-    id: number;
-  }
+  id: number;
 }
 
-const cancelReservation = async (_, args: Input, ctx): Promise<IMutationResponse> => {
+const cancelReservation = async (_, args: { input: Input }, ctx): Promise<IMutationResponse> => {
   const { input } = args;
-  const user = await getUser(ctx.jwtToken, ctx.db);
+  const user = await ctx.getUser(ctx.jwtToken, ctx.db);
   const reservation = await ctx.db.findOne(Reservation, { id: input.id });
   if (!reservation) return { code: '404', success: false, message: 'Reservation not found' };
   if (reservation.userId !== user.id) return { code: '403', success: false, message: 'Forbidden' };

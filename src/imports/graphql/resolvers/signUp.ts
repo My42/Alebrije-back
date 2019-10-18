@@ -1,6 +1,7 @@
 import User from '../../database/entity/User';
 import IMutationResponse from '../interfaces/IMutationResponse';
 import sqlErrorToMutationResponse from '../../database/sqlErrorToMutationResponse';
+import AlebrijeError from "../../errors/AlebrijeError";
 
 interface signUpArgs {
   fullName: string;
@@ -8,16 +9,16 @@ interface signUpArgs {
   password: string;
 }
 
-const signUp = async (_, args, ctx) : Promise<IMutationResponse> => {
-  console.log('4')
+const signUp = async (_, args: { input: signUpArgs }, ctx) : Promise<IMutationResponse> => {
   const { fullName, email, password } : signUpArgs = args.input;
   try {
     const user = new User({ email, fullName, password });
-    console.log('5')
     await ctx.db.save(user);
-    console.log('6')
     return ({ code: '200', success: true, message: 'Sign up Succeed' });
   } catch (e) {
+    if (e instanceof AlebrijeError) {
+      return { code: e.code, success: false, message: e.message }
+    }
     return sqlErrorToMutationResponse(e);
   }
 };
