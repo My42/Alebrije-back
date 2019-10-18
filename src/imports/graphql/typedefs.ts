@@ -104,11 +104,11 @@ const typedefs = gql`
     
     type Query {
         me: String
-        signIn(input: SignInQueryInput!): SignInQueryResponse
         reservations(input: ReservationsQueryInput!) : [Reservation]
     }
 
     type Mutation {
+        signIn(input: SignInQueryInput!): SignInQueryResponse
         signUp(input: SignUpMutationInput!): SignUpMutationResponse
         forgotPassword(input: ForgotPasswordMutationInput!): ForgotPasswordResponse
         addReservation(input: AddReservationMutationInput!): AddReservationMutationResponse

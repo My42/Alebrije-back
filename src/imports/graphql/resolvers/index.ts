@@ -9,13 +9,13 @@ const resolvers = {
   Query: {
     me: () => 'me',
     reservations,
-    signIn,
   },
   Mutation: {
     addReservation,
     forgotPassword,
     signUp,
     cancelReservation,
+    signIn,
   },
 };
 
