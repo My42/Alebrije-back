@@ -21,6 +21,6 @@ createConnection('default').then(async () => {
       };
     },
   });
-  const { url } = await server.listen(process.env.PORT || 4000);
+  const { url } = await server.listen(process.env.PORT || 4242);
   console.log(`🚀  Server ready at ${url}`);
 }).catch(error => console.log(error));
