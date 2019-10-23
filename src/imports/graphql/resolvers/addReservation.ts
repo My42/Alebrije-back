@@ -58,7 +58,6 @@ const addReservation = async (_, args, ctx): Promise<IMutationResponse> => {
       return { code: '400', success: false, message: 'Invalid drink id' };
     }
   }
-
   return { code: '200', success: true, message: 'Reservation added' };
 };
 

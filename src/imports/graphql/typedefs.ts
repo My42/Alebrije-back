@@ -45,6 +45,12 @@ const typedefs = gql`
         success: Boolean!
     }
 
+    type ReservingMutationResponse implements MutationResponse {
+        code: String!
+        message: String!
+        success: Boolean!
+    }
+
     type Drink {
         id: Int!
         label: String!
@@ -62,6 +68,10 @@ const typedefs = gql`
     type DrinkOrder {
         drink: Drink
         quantity: Int
+    }
+    
+    type onReservingResponse {
+        reservedTableCount: Int
     }
     
     input SignUpMutationInput {
@@ -101,6 +111,11 @@ const typedefs = gql`
         id: Int
     }
     
+    input ReservingMutationInput {
+        date: String,
+        reservedTableCount: Int
+    }
+    
     type Query {
         me: String
         reservations(input: ReservationsQueryInput!) : [Reservation]
@@ -112,6 +127,11 @@ const typedefs = gql`
         forgotPassword(input: ForgotPasswordMutationInput!): ForgotPasswordResponse
         addReservation(input: AddReservationMutationInput!): AddReservationMutationResponse
         cancelReservation(input: CancelReservationMutationInput!): CancelReservationMutationResponse
+        reserving(input: ReservingMutationInput): ReservingMutationResponse
+    }
+
+    type Subscription {
+        onReserving(date: String): onReservingResponse
     }
 `;
 

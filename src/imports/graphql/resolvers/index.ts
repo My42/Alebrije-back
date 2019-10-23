@@ -4,10 +4,12 @@ import forgotPassword from './forgotPassword';
 import reservations from './reservations';
 import addReservation from './addReservation';
 import cancelReservation from './cancelReservation';
+import reserving from './reserving';
+import { onReserving } from '../subscriptions';
 
 const resolvers = {
   Query: {
-    me: () => 'me',
+    me: (_, args, ctx) => ctx.pubSub.publish('reserving_2020-01-12', { }),
     reservations,
   },
   Mutation: {
@@ -16,6 +18,12 @@ const resolvers = {
     signUp,
     cancelReservation,
     signIn,
+    reserving,
+  },
+  Subscription: {
+    onReserving: {
+      subscribe: onReserving,
+    },
   },
 };
 

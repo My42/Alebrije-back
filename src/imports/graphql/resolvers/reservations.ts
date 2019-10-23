@@ -5,7 +5,6 @@ import Reservation from '../../database/entity/Reservation';
 import Drink from '../../database/entity/Drink';
 
 const resolver = async (_, args, ctx): Promise<Reservation> => {
-  console.log('--->', _);
   const { month, year } = args.input;
   const from = format(new Date(year, month, 1), 'yyyy-MM-dd');
   const to = format(new Date(year, month + 1, 1), 'yyyy-MM-dd');
@@ -22,8 +21,6 @@ const resolver = async (_, args, ctx): Promise<Reservation> => {
     ctx.db.query(`SELECT "drinkId", count("do"."id") FROM "drinkOrder" "do" WHERE "do"."reservationId" = ${reservation.id} GROUP BY "do"."drinkId"`)
   ));
 
-  console.dir(drinkOrders, { colors: true })
-
   const ret = await map(reservations, async (reservation, index) => {
     const orders = await map(drinkOrders[index], (order) => {
       const { drinkId, count } = order;
@@ -31,15 +28,12 @@ const resolver = async (_, args, ctx): Promise<Reservation> => {
       return { drink, quantity: count };
     });
 
-    console.dir(orders, { colors: true, depth: null });
-
     return {
       ...reservation,
       date: getTime(reservation.date),
       drinkOrders: orders,
     };
   });
-  console.dir(ret, { colors: true, depth: null });
   return ret;
 };
 
