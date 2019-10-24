@@ -13,15 +13,19 @@ createConnection('default').then(async () => {
     typeDefs,
     resolvers,
     subscriptions: {
-      onConnect: () => { console.log('user connected to subscriptions'); },
+      onConnect: (connectionParams: { authToken: string }) => {
+        console.log(connectionParams)
+        return { authToken: connectionParams.authToken };
+      },
       onDisconnect: (_, ctx) => { console.log('user disconnected to subscriptions'); },
     },
-
-    context: async ({ req, connection }) => {
+    context: async ({ req, connection, ...props }) => {
       let jwtToken = null;
       if (!connection) {
         const { authorization } = req.headers;
         jwtToken = authorization ? authorization.replace('Bearer ', '') : null;
+      } else {
+        jwtToken = connection.context.authToken;
       }
 
       const db = getManager('default');

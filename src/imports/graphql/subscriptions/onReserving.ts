@@ -2,6 +2,7 @@ import formatDate from 'date-fns/format';
 import parseDate from 'date-fns/parse';
 import logger from '../../logger';
 import withCancel from '../utils/withCancel';
+import cache, { cacheValueReservation } from '../../cache/reservations';
 
 export interface reservingInput {
   date: string;
@@ -18,13 +19,15 @@ export const formatTriggerName = (dateValue: string) => {
 };
 
 export default async function onReserving(_, args: reservingInput, ctx) {
+  const user = await ctx.getUser(ctx.jwtToken, ctx.db);
   try {
-    console.log('onReserving !', formatTriggerName(args.date));
+    console.log('onReserving !', formatTriggerName(args.date), user);
     return withCancel(
       ctx.pubSub.asyncIterator(formatTriggerName(args.date)),
       () => {
-        console.log('user unsubscribe');
-        ctx.pubSub.publish(formatTriggerName(args.date), { onReserving: { reservedTableCount: -2 } });
+        logger.info(`User[${user.id}] unsubscribed onReserving`);
+        const key = `${formatTriggerName(args.date)}-${user.id}`;
+        cache.del(key);
       },
     );
   } catch (e) {

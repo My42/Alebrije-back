@@ -405,6 +405,13 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-5.2.7.tgz#315d570ccb56c53452ff8638738df60726d5b6ea"
   integrity sha512-NYrtPht0wGzhwe9+/idPaBB+TqkY9AhTvOLMkThm0IoEfLaiVQZwBwyJ5puCkO3AUCWrmcoePjp2mbFocKy4SQ==
 
+"@types/node-cache@^4.1.3":
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/@types/node-cache/-/node-cache-4.1.3.tgz#524b8b13b787dec4fe982b9d77b251f7d59416f4"
+  integrity sha512-3hsqnv3H1zkOhjygJaJUYmgz5+FcPO3vejBX7cE9/cnuINOJYrzkfOnUCvpwGe9kMZANIHJA7J5pOdeyv52OEw==
+  dependencies:
+    "@types/node" "*"
+
 "@types/node@*", "@types/node@^12.7.5":
   version "12.7.12"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.12.tgz#7c6c571cc2f3f3ac4a59a5f2bd48f5bdbc8653cc"
@@ -1471,6 +1478,11 @@ cliui@^5.0.0:
     string-width "^3.1.0"
     strip-ansi "^5.2.0"
     wrap-ansi "^5.1.0"
+
+clone@2.x:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/clone/-/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
+  integrity sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
 
 co@^4.6.0:
   version "4.6.0"
@@ -4269,6 +4281,13 @@ nise@^1.5.2:
     just-extend "^4.0.2"
     lolex "^4.1.0"
     path-to-regexp "^1.7.0"
+
+node-cache@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/node-cache/-/node-cache-5.0.0.tgz#3cbf44b15eb1f955a30f09caaa4037008e84729f"
+  integrity sha512-Wtt0K7r8ojiziSvg7Ga5NZ9wSTTY0rRywnXaqB71NiXc2D6R4QdeQCzwOpAwKzIXZoGmj+ru5OfRnwYdi5T8rg==
+  dependencies:
+    clone "2.x"
 
 node-environment-flags@1.0.5:
   version "1.0.5"

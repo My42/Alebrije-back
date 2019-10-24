@@ -128,6 +128,7 @@ const typedefs = gql`
         addReservation(input: AddReservationMutationInput!): AddReservationMutationResponse
         cancelReservation(input: CancelReservationMutationInput!): CancelReservationMutationResponse
         reserving(input: ReservingMutationInput): ReservingMutationResponse
+        stopReserving(input: ReservingMutationInput): ReservingMutationResponse
     }
 
     type Subscription {
