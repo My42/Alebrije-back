@@ -58,7 +58,7 @@ describe('addReservation resolver', () => {
     expect(getUser.getCall(0).args[1]).to.be.equal(this.db);
     expect(resp.code).to.be.equal('200');
     expect(resp.success).to.be.equal(true);
-    expect(resp.message).to.be.equal('Reservation added');
+    expect(resp.message).to.be.equal('Reservation.added');
     expect(drinkOrders).to.not.be.equal(undefined);
     expect(drinkOrders).to.be.a('array');
     expect(drinkOrders).to.be.lengthOf(quantity);
@@ -76,7 +76,7 @@ describe('addReservation resolver', () => {
         drinkOrders: null,
       };
       const reps = await addReservationResolver(null, { input }, ctx);
-      expect(reps).to.be.deep.equal({ code: '400', success: false, message: 'Invalid date value' });
+      expect(reps).to.be.deep.equal({ code: '400', success: false, message: 'Invalid.date' });
     });
     await Promise.all(promises);
     expect(getUser.callCount).to.be.equal(invalidDates.length);
@@ -93,7 +93,7 @@ describe('addReservation resolver', () => {
     await addReservationResolver(null, { input }, ctx);
     const resp = await addReservationResolver(null, { input }, ctx);
     expect(resp.code).to.be.equal('403');
-    expect(resp.message).to.be.equal('Table already taken');
+    expect(resp.message).to.be.equal('Table.alreadyTaken');
     expect(resp.success).to.be.equal(false);
   });
 
@@ -107,7 +107,7 @@ describe('addReservation resolver', () => {
     };
     const reps = await addReservationResolver(null, { input }, ctx);
     expect(reps.code).to.be.equal('400');
-    expect(reps.message).to.be.equal('Invalid drink id');
+    expect(reps.message).to.be.equal('Invalid.drink');
     expect(reps.success).to.be.equal(false);
   });
 });

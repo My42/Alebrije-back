@@ -21,18 +21,18 @@ const addReservation = async (_, args, ctx): Promise<IMutationResponse> => {
   let date = null;
   try {
     date = formatDate(input.date);
-    if (new Date(date) <= new Date()) throw new Error('Invalid date value');
+    if (new Date(date) <= new Date()) throw new Error('Invalid.date');
   } catch (e) {
-    return { code: '400', success: false, message: 'Invalid date value' };
+    return { code: '400', success: false, message: 'Invalid.date' };
   }
 
-  if (!checkTableNumber(input.tableNumber)) return { code: '400', success: false, message: 'Invalid table number' };
+  if (!checkTableNumber(input.tableNumber)) return { code: '400', success: false, message: 'Invalid.tableNumber' };
 
   const reservation = new Reservation({ date, tableNumber: input.tableNumber, userId: user.id });
   try {
     await ctx.db.save(reservation);
   } catch (e) {
-    return { code: '403', success: false, message: 'Table already taken' };
+    return { code: '403', success: false, message: 'Table.alreadyTaken' };
   }
 
   if (input.drinkOrders) {
@@ -50,10 +50,10 @@ const addReservation = async (_, args, ctx): Promise<IMutationResponse> => {
       await ctx.db.save(drinkOrders);
     } catch (e) {
       await ctx.db.delete(Reservation, reservation.id);
-      return { code: '400', success: false, message: 'Invalid drink id' };
+      return { code: '400', success: false, message: 'Invalid.drink' };
     }
   }
-  return { code: '200', success: true, message: 'Reservation added' };
+  return { code: '200', success: true, message: 'Reservation.added' };
 };
 
 export default addReservation;
