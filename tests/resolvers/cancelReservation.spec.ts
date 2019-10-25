@@ -51,7 +51,7 @@ describe('cancelReservation resolver', () => {
     expect(getUser.getCall(0).args[1]).to.be.equal(this.db);
     expect(resp.code).to.be.equal('200');
     expect(resp.success).to.be.equal(true);
-    expect(resp.message).to.be.equal('Reservation canceled');
+    expect(resp.message).to.be.equal('Reservation.canceled');
     expect(reservation).to.be.equal(undefined);
   });
 
@@ -63,7 +63,7 @@ describe('cancelReservation resolver', () => {
     const resp = await cancelReservationResolver(null, { input }, ctx);
     expect(resp.code).to.be.equal('404');
     expect(resp.success).to.be.equal(false);
-    expect(resp.message).to.be.equal('Reservation not found');
+    expect(resp.message).to.be.equal('Reservation.notFound');
   });
 
   it('should failed for forbidden cancel', async () => {
@@ -74,6 +74,6 @@ describe('cancelReservation resolver', () => {
     const resp = await cancelReservationResolver(null, { input }, ctx);
     expect(resp.code).to.be.equal('403');
     expect(resp.success).to.be.equal(false);
-    expect(resp.message).to.be.equal('Forbidden');
+    expect(resp.message).to.be.equal('Error.forbidden');
   });
 });
