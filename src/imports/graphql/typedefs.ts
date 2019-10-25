@@ -74,6 +74,12 @@ const typedefs = gql`
         reservedTableCount: Int
     }
     
+    type deleteAccountMutationResponse implements MutationResponse{
+        success: Boolean!
+        message: String!
+        code: String!
+    }
+    
     input SignUpMutationInput {
         fullName: String!
         email: String!
@@ -122,12 +128,13 @@ const typedefs = gql`
     }
 
     type Mutation {
-        signIn(input: SignInQueryInput!): SignInQueryResponse
-        signUp(input: SignUpMutationInput!): SignUpMutationResponse
-        forgotPassword(input: ForgotPasswordMutationInput!): ForgotPasswordResponse
         addReservation(input: AddReservationMutationInput!): AddReservationMutationResponse
         cancelReservation(input: CancelReservationMutationInput!): CancelReservationMutationResponse
+        deleteAccount: Boolean
+        forgotPassword(input: ForgotPasswordMutationInput!): ForgotPasswordResponse
         reserving(input: ReservingMutationInput): ReservingMutationResponse
+        signIn(input: SignInQueryInput!): SignInQueryResponse
+        signUp(input: SignUpMutationInput!): SignUpMutationResponse
         stopReserving(input: ReservingMutationInput): ReservingMutationResponse
     }
 
