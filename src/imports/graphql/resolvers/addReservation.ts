@@ -1,10 +1,8 @@
-import formatDate from 'date-fns/format';
-import parseDate from 'date-fns/parse';
-import compareAsc from 'date-fns/compareAsc';
 import IMutationResponse from '../interfaces/IMutationResponse';
 import DrinkOrderEntity from '../../database/entity/DrinkOrder';
 import Reservation from '../../database/entity/Reservation';
 import checkTableNumber from '../../utils/checkTableNumber';
+import formatDate from '../../utils/formatDate';
 
 export interface DrinkOrder {
   drinkId: number;
@@ -22,10 +20,7 @@ const addReservation = async (_, args, ctx): Promise<IMutationResponse> => {
   const user = await ctx.getUser(ctx.jwtToken, ctx.db);
   let date = null;
   try {
-    date = formatDate(
-      parseDate(input.date, 'MM/dd/yyyy', new Date()),
-      'yyyy-MM-dd',
-    );
+    date = formatDate(input.date);
     if (new Date(date) <= new Date()) throw new Error('Invalid date value');
   } catch (e) {
     return { code: '400', success: false, message: 'Invalid date value' };

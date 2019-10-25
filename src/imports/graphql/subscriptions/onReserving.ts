@@ -1,8 +1,7 @@
-import formatDate from 'date-fns/format';
-import parseDate from 'date-fns/parse';
+import formatDate from '../../utils/formatDate';
 import logger from '../../logger';
 import withCancel from '../utils/withCancel';
-import cache, { cacheValueReservation } from '../../cache/reservations';
+import cache from '../../cache/reservations';
 
 export interface reservingInput {
   date: string;
@@ -11,17 +10,14 @@ export interface reservingInput {
 export const NAME = 'reserving';
 
 export const formatTriggerName = (dateValue: string) => {
-  const date = formatDate(
-    parseDate(dateValue, 'MM/dd/yyyy', new Date()),
-    'yyyy-MM-dd',
-  );
+  const date = formatDate(dateValue);
   return `${NAME}_${date}`;
 };
 
 export default async function onReserving(_, args: reservingInput, ctx) {
   const user = await ctx.getUser(ctx.jwtToken, ctx.db);
   try {
-    console.log('onReserving !', formatTriggerName(args.date), user);
+    logger.info('onReserving !', formatTriggerName(args.date), user);
     return withCancel(
       ctx.pubSub.asyncIterator(formatTriggerName(args.date)),
       () => {
