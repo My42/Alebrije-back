@@ -4,6 +4,7 @@ import {
   Column,
   BeforeInsert,
   BeforeUpdate,
+  AfterUpdate,
 } from 'typeorm';
 import { IsEmail, Length } from 'class-validator';
 import { hash } from 'bcryptjs';

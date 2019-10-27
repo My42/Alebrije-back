@@ -74,10 +74,16 @@ const typedefs = gql`
         reservedTableCount: Int
     }
     
-    type deleteAccountMutationResponse implements MutationResponse{
+    type deleteAccountMutationResponse implements MutationResponse {
         success: Boolean!
         message: String!
         code: String!
+    }
+    
+    type UpdatAccountMutationResponse implements MutationResponse {
+        code: String!
+        message: String!
+        success: Boolean!
     }
     
     input SignUpMutationInput {
@@ -122,6 +128,10 @@ const typedefs = gql`
         reservedTableCount: Int
     }
     
+    input UpdateAccountMutationInput {
+        password: String
+    }
+    
     type Query {
         me: String
         reservations(input: ReservationsQueryInput!) : [Reservation]
@@ -136,6 +146,7 @@ const typedefs = gql`
         signIn(input: SignInQueryInput!): SignInQueryResponse
         signUp(input: SignUpMutationInput!): SignUpMutationResponse
         stopReserving(input: ReservingMutationInput): ReservingMutationResponse
+        updateAccount(input: UpdateAccountMutationInput!) : UpdatAccountMutationResponse
     }
 
     type Subscription {

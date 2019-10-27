@@ -7,6 +7,7 @@ import cancelReservation from './cancelReservation';
 import reserving from './reserving';
 import { onReserving } from '../subscriptions';
 import stopReserving from './stopReserving';
+import updateAccount from './updateAccount';
 
 const resolvers = {
   Query: {
@@ -21,6 +22,7 @@ const resolvers = {
     signIn,
     reserving,
     stopReserving,
+    updateAccount,
   },
   Subscription: {
     onReserving: {
