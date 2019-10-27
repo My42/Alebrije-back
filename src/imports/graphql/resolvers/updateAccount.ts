@@ -1,5 +1,7 @@
 import IMutationResponse from '../interfaces/IMutationResponse';
 import logger from '../../logger';
+import AlebrijeError from "imports/errors/AlebrijeError";
+import sqlErrorToMutationResponse from "imports/database/sqlErrorToMutationResponse";
 
 export interface UpdateAccountInput {
   password?: string;
@@ -21,6 +23,9 @@ export default async function (_, args: UpdateAccountArgs, ctx): Promise<IMutati
     return { code: '200', success: true, message: 'User.updated' };
   } catch (e) {
     logger.error(e);
-    return { code: '500', success: false, message: 'Error.internalServerError' };
+    if (e instanceof AlebrijeError) {
+      return { code: e.code, success: false, message: e.message };
+    }
+    return sqlErrorToMutationResponse(e);
   }
 }
