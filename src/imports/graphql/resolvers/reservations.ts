@@ -5,16 +5,19 @@ import Reservation from '../../database/entity/Reservation';
 import Drink from '../../database/entity/Drink';
 
 const resolver = async (_, args, ctx): Promise<Reservation> => {
-  const { month, year } = args.input;
+  const { month, year, userId } = args.input;
   const from = format(new Date(year, month, 1), 'yyyy-MM-dd');
   const to = format(new Date(year, month + 1, 1), 'yyyy-MM-dd');
   const drinks = await ctx.db.find(Drink);
+  const user = await ctx.getUser(ctx.jwtToken, ctx.db);
+
+  if (userId && userId !== user.id) return null;
 
   const reservations = await ctx.db.createQueryBuilder()
     .select('reservation')
     .from(Reservation, 'reservation')
-    .where('reservation.date >= :from AND reservation.date < :to',
-      { from, to })
+    .where(`reservation.date >= :from AND reservation.date < :to ${userId ? 'AND reservation.userId = :userId' : ''}`,
+      { from, to, userId })
     .getMany();
 
   const drinkOrders = await map(reservations, async reservation => (
