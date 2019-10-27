@@ -140,7 +140,7 @@ const typedefs = gql`
     type Mutation {
         addReservation(input: AddReservationMutationInput!): AddReservationMutationResponse
         cancelReservation(input: CancelReservationMutationInput!): CancelReservationMutationResponse
-        deleteAccount: Boolean
+        deleteAccount: deleteAccountMutationResponse
         forgotPassword(input: ForgotPasswordMutationInput!): ForgotPasswordResponse
         reserving(input: ReservingMutationInput): ReservingMutationResponse
         signIn(input: SignInQueryInput!): SignInQueryResponse
