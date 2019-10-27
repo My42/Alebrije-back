@@ -104,7 +104,7 @@ const typedefs = gql`
     }
 
     input ReservationsQueryInput {
-        month: Int!
+        month: Int
         year: Int!
         userId: Int
     }

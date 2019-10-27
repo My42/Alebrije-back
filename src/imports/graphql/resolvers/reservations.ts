@@ -5,9 +5,9 @@ import Reservation from '../../database/entity/Reservation';
 import Drink from '../../database/entity/Drink';
 
 const resolver = async (_, args, ctx): Promise<Reservation> => {
-  const { month, year, userId } = args.input;
-  const from = format(new Date(year, month, 1), 'yyyy-MM-dd');
-  const to = format(new Date(year, month + 1, 1), 'yyyy-MM-dd');
+  const { month = null, year, userId } = args.input;
+  const from = format(new Date(year, month || 0, 1), 'yyyy-MM-dd');
+  const to = format(new Date(year, month ? month + 1 : 11, 1), 'yyyy-MM-dd');
   const drinks = await ctx.db.find(Drink);
   const user = await ctx.getUser(ctx.jwtToken, ctx.db);
 

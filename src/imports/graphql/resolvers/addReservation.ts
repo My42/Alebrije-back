@@ -21,7 +21,7 @@ const addReservation = async (_, args, ctx): Promise<IMutationResponse> => {
   let date = null;
   try {
     date = formatDate(input.date);
-    if (new Date(date) <= new Date()) throw new Error('Invalid.date');
+    if (new Date(date) <= new Date()) throw new Error('Error.invalid.date');
   } catch (e) {
     return { code: '400', success: false, message: 'Invalid.date' };
   }
