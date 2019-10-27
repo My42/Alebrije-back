@@ -1,7 +1,7 @@
+import AlebrijeError from 'imports/errors/AlebrijeError';
+import sqlErrorToMutationResponse from 'imports/database/sqlErrorToMutationResponse';
 import IMutationResponse from '../interfaces/IMutationResponse';
 import logger from '../../logger';
-import AlebrijeError from "imports/errors/AlebrijeError";
-import sqlErrorToMutationResponse from "imports/database/sqlErrorToMutationResponse";
 
 export interface UpdateAccountInput {
   password?: string;
