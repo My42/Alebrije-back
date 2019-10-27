@@ -8,6 +8,7 @@ import reserving from './reserving';
 import { onReserving } from '../subscriptions';
 import stopReserving from './stopReserving';
 import updateAccount from './updateAccount';
+import deleteAccount from './deleteAccount';
 
 const resolvers = {
   Query: {
@@ -23,6 +24,7 @@ const resolvers = {
     reserving,
     stopReserving,
     updateAccount,
+    deleteAccount,
   },
   Subscription: {
     onReserving: {
