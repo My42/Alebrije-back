@@ -22,7 +22,7 @@ const resolver = async (_, args, ctx): Promise<Reservation> => {
   ));
 
   const ret = await map(reservations, async (reservation, index) => {
-    const orders = await map(drinkOrders[index], (order) => {
+    const orders = await map(drinkOrders[index], order => {
       const { drinkId, count } = order;
       const drink = drinks.find(({ id }) => id === drinkId);
       return { drink, quantity: count };

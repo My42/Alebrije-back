@@ -1,5 +1,4 @@
 import IMutationResponse from '../interfaces/IMutationResponse';
-import User from '../../database/entity/User';
 import logger from '../../logger';
 
 export interface UpdateAccountInput {

@@ -1,7 +1,7 @@
 import User from '../../database/entity/User';
 import IMutationResponse from '../interfaces/IMutationResponse';
 import sqlErrorToMutationResponse from '../../database/sqlErrorToMutationResponse';
-import AlebrijeError from "../../errors/AlebrijeError";
+import AlebrijeError from '../../errors/AlebrijeError';
 
 interface signUpArgs {
   fullName: string;
@@ -17,7 +17,7 @@ const signUp = async (_, args: { input: signUpArgs }, ctx) : Promise<IMutationRe
     return ({ code: '200', success: true, message: 'Sign up Succeed' });
   } catch (e) {
     if (e instanceof AlebrijeError) {
-      return { code: e.code, success: false, message: e.message }
+      return { code: e.code, success: false, message: e.message };
     }
     return sqlErrorToMutationResponse(e);
   }

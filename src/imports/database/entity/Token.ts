@@ -1,4 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+} from 'typeorm';
 import ETokenType from '../enums/ETokenType';
 
 @Entity()
@@ -22,11 +26,6 @@ class Token {
 
   @Column()
   value!: string;
-
-  @BeforeInsert()
-  d(args) {
-    console.log('Token: before insert', args);
-  }
 }
 
 export default Token;

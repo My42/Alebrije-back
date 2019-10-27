@@ -10,7 +10,6 @@ import {
 } from '../fixtures';
 import getDatabaseConnection from '../utils/getDatabaseConnection';
 import getDb from '../utils/getDb';
-import reservations from '../../src/imports/database/seeds/data/reservations';
 
 
 describe('cancelReservation resolver', () => {

@@ -1,9 +1,9 @@
-import { expect } from 'chai'
+import { expect } from 'chai';
 import getDatabaseConnection from '../utils/getDatabaseConnection';
 import getDb from '../utils/getDb';
-import signUpResolver from '../../src/imports/graphql/resolvers/signUp'
+import signUpResolver from '../../src/imports/graphql/resolvers/signUp';
 import User from '../../src/imports/database/entity/User';
-import { createUser } from '../fixtures'
+import { createUser } from '../fixtures';
 
 describe('signUp resolver', () => {
   const correctUser = createUser();
@@ -15,7 +15,7 @@ describe('signUp resolver', () => {
   const incorrectUsersInvalidPassword = [
     createUser({ password: '' }),
     createUser({ password: 'abcd' }),
-    createUser({ password: '123456789' })
+    createUser({ password: '123456789' }),
   ];
   const incorrectUsersInvalidFullName = [
     createUser({ fullName: '' }),
@@ -33,9 +33,8 @@ describe('signUp resolver', () => {
   });
 
   it('should sign up the user', async () => {
-    const resp = await signUpResolver(null, { input: {  ...correctUser } }, { db: this.db });
+    const resp = await signUpResolver(null, { input: { ...correctUser } }, { db: this.db });
     const user = await this.db.findOne(User, { email: correctUser.email });
-    const users = await this.db.find(User, { });
 
     expect(resp.code).to.be.equal('200');
     expect(resp.success).to.be.equal(true);
@@ -43,30 +42,30 @@ describe('signUp resolver', () => {
   });
 
   it('should return 409', async () => {
-    const resp = await signUpResolver(null, { input: {  ...correctUser } }, { db: this.db });
+    const resp = await signUpResolver(null, { input: { ...correctUser } }, { db: this.db });
 
     expect(resp.code).to.be.equal('409');
     expect(resp.success).to.be.equal(false);
   });
 
   it('should sign up no ones for invalid email', async () => {
-      const promises = incorrectUsersInvalidEmail.map(user => (
-        signUpResolver(null, { input: user }, { db: this.db })
-      ));
+    const promises = incorrectUsersInvalidEmail.map(user => (
+      signUpResolver(null, { input: user }, { db: this.db })
+    ));
     const responses = await Promise.all(promises);
     expect(responses).to.be.deep
       .equal(new Array(incorrectUsersInvalidEmail.length)
-        .fill({ code: '400', message: 'Invalid email', success: false }))
+        .fill({ code: '400', message: 'Invalid email', success: false }));
   });
 
   it('should sign up no ones for invalid password', async () => {
-      const promises = incorrectUsersInvalidPassword.map(user => (
-        signUpResolver(null, { input: user }, { db: this.db })
-      ));
+    const promises = incorrectUsersInvalidPassword.map(user => (
+      signUpResolver(null, { input: user }, { db: this.db })
+    ));
     const responses = await Promise.all(promises);
     expect(responses).to.be.deep
       .equal(new Array(incorrectUsersInvalidPassword.length)
-        .fill({ code: '400', message: 'Invalid password', success: false }))
+        .fill({ code: '400', message: 'Invalid password', success: false }));
   });
 
   it('should sign up no ones for invalid full name', async () => {
@@ -76,6 +75,6 @@ describe('signUp resolver', () => {
     const responses = await Promise.all(promises);
     expect(responses).to.be.deep
       .equal(new Array(incorrectUsersInvalidFullName.length)
-        .fill({ code: '400', message: 'Invalid full name', success: false }))
-  })
+        .fill({ code: '400', message: 'Invalid full name', success: false }));
+  });
 });

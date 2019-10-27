@@ -70,5 +70,4 @@ describe('forgotPassword resolver', () => {
     expect(resp.code).to.be.equal('404');
     expect(resp.success).to.be.equal(false);
   });
-
 });

@@ -1,9 +1,9 @@
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import omit from 'lodash/omit';
 import User from '../../database/entity/User';
 import { SignInMutationResponse } from '../interfaces/IMutationResponse';
-import config from "../../config/app";
-import omit from 'lodash/omit';
+import config from '../../config/app';
 
 export interface signInArgs {
   email: string;

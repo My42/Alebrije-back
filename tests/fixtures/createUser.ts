@@ -1,5 +1,5 @@
-import faker from 'faker'
-import User from "../../src/imports/database/entity/User";
+import faker from 'faker';
+import User from '../../src/imports/database/entity/User';
 
 const createUser = (args?: {}): User => new User({
   fullName: faker.name.findName(),

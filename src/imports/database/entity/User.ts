@@ -4,7 +4,6 @@ import {
   Column,
   BeforeInsert,
   BeforeUpdate,
-  AfterUpdate,
 } from 'typeorm';
 import { IsEmail, Length } from 'class-validator';
 import { hash } from 'bcryptjs';
@@ -49,7 +48,7 @@ class User {
 
   @BeforeInsert()
   async checkPassword() {
-    if (!this.password.match(/(?=.*[0-9])(?=.*[!-\/])(?=.{8,})/)) {
+    if (!this.password.match(/(?=.*[0-9])(?=.*[!-/])(?=.{8,})/)) {
       throw new AlebrijeError('400', 'Invalid password');
     }
   }

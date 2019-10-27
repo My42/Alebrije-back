@@ -69,7 +69,7 @@ describe('addReservation resolver', () => {
     const ctx = { getUser, db: this.db, jwtToken };
     const invalidDates = ['alebrije', '23/12/1996', formatDate(Date.now(), 'MM/dd/yyyy')];
 
-    const promises = invalidDates.map(async (date) => {
+    const promises = invalidDates.map(async date => {
       const input: AddReservationInput = {
         tableNumber: 1,
         date,

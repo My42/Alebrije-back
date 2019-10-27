@@ -1,4 +1,7 @@
-import { createConnection, Connection, getConnection, getManager} from 'typeorm';
+import {
+  createConnection,
+  Connection,
+} from 'typeorm';
 
 const getDatabaseConnection = (): Promise<Connection> => createConnection('test');
 

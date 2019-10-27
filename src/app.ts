@@ -4,6 +4,7 @@ import { ApolloServer, PubSub } from 'apollo-server';
 import { typeDefs, resolvers } from './imports/graphql';
 import getUser from './imports/utils/getUser';
 import mailer from './imports/mailer';
+import logger from './imports/logger';
 
 createConnection('default').then(async () => {
   const pubSub = new PubSub();
@@ -13,13 +14,12 @@ createConnection('default').then(async () => {
     typeDefs,
     resolvers,
     subscriptions: {
-      onConnect: (connectionParams: { authToken: string }) => {
-        console.log(connectionParams)
-        return { authToken: connectionParams.authToken };
-      },
-      onDisconnect: (_, ctx) => { console.log('user disconnected to subscriptions'); },
+      onConnect: (connectionParams: { authToken: string }) => (
+        { authToken: connectionParams.authToken }
+      ),
+      onDisconnect: () => { logger.info('user disconnected to subscriptions'); },
     },
-    context: async ({ req, connection, ...props }) => {
+    context: async ({ req, connection }) => {
       let jwtToken = null;
       if (!connection) {
         const { authorization } = req.headers;
@@ -39,6 +39,6 @@ createConnection('default').then(async () => {
     },
   });
   const { url, subscriptionsUrl } = await server.listen(process.env.PORT || 4242);
-  console.log(`🚀  Server ready at ${url}`);
-  console.log(`🚀 Subscriptions ready at ${subscriptionsUrl}`);
-}).catch(error => console.log(error));
+  logger.info(`🚀  Server ready at ${url}`);
+  logger.info(`🚀 Subscriptions ready at ${subscriptionsUrl}`);
+}).catch(error => logger.error(error));
