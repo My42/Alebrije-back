@@ -5,7 +5,7 @@ import logger from '../logger';
 const cache = new NodeCache({ checkperiod: 1 });
 
 export const config = {
-  ttl: '600', // 5 minutes
+  ttl: '300', // 5 minutes
 };
 
 export interface cacheValueReservation {
