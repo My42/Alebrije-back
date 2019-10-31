@@ -1,6 +1,7 @@
+import reduce from 'lodash/reduce';
 import IMutationResponse from '../interfaces/IMutationResponse';
 import { formatTriggerName } from '../subscriptions/onReserving';
-import { setKey } from '../../cache/reservations';
+import cache, {setKey, getKeysByTriggerName, cacheValueReservation} from '../../cache/reservations';
 import info from '../../constants/alebrijeInfo';
 
 export interface ReservingInput {
@@ -16,10 +17,21 @@ const resolver = async (_, args: Args, ctx): Promise<IMutationResponse> => {
   const user = await ctx.getUser(ctx.jwtToken, ctx.db);
   const { date, reservedTableCount } = args.input;
 
-  if (reservedTableCount <= 0 || reservedTableCount > info.numberOfTables) return { code: '400', success: false, message: 'Error.invalid.reservedTableCount' };
+  if (reservedTableCount <= 0 || reservedTableCount > info.numberOfTables) {
+    return { code: '400', success: false, message: 'Error.invalid.reservedTableCount' };
+  }
 
   try {
     const triggerName = formatTriggerName(date);
+    const keys = getKeysByTriggerName(triggerName);
+    const values = cache.mget(keys);
+    const totalReservedTableCount = reduce<any, number>(values,
+      (result, value) => result + value.reservedTableCount,
+      0);
+    if (reservedTableCount > info.numberOfTables - totalReservedTableCount) {
+      return { code: '400', success: false, message: 'Error.invalid.reservedTableCount' };
+    }
+
     const onUnsubscribe = () => (
       ctx.pubSub.publish(triggerName, { onReserving: { reservedTableCount: -reservedTableCount } })
     );

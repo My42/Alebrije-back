@@ -27,4 +27,8 @@ cache.on('del', async (key, value) => {
 });
 cache.on('expired', (key, value) => logger.info('[expired]', { key, value }));
 
+export const getKeysByTriggerName = triggerName => (
+  cache.keys().filter(key => key.includes(triggerName))
+);
+
 export default cache;
