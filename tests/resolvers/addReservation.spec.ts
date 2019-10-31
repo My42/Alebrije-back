@@ -76,7 +76,7 @@ describe('addReservation resolver', () => {
         drinkOrders: null,
       };
       const reps = await addReservationResolver(null, { input }, ctx);
-      expect(reps).to.be.deep.equal({ code: '400', success: false, message: 'Invalid.date' });
+      expect(reps).to.be.deep.equal({ code: '400', success: false, message: 'Error.invalid.date' });
     });
     await Promise.all(promises);
     expect(getUser.callCount).to.be.equal(invalidDates.length);
@@ -107,7 +107,7 @@ describe('addReservation resolver', () => {
     };
     const reps = await addReservationResolver(null, { input }, ctx);
     expect(reps.code).to.be.equal('400');
-    expect(reps.message).to.be.equal('Invalid.drink');
+    expect(reps.message).to.be.equal('Error.invalid.drink');
     expect(reps.success).to.be.equal(false);
   });
 });
