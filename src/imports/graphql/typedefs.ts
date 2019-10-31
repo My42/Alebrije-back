@@ -134,9 +134,8 @@ const typedefs = gql`
     }
     
     type Query {
-        me: String
         reservations(input: ReservationsQueryInput!) : [Reservation]
-        myReservations: [Reservation]
+        drinks : [Drink]!
     }
 
     type Mutation {
