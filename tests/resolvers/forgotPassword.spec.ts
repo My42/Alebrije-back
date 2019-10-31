@@ -51,7 +51,7 @@ describe('forgotPassword resolver', () => {
     const { value: token } = await this.db.findOne(Token, { userId: user.id });
     const resp = await forgotPassword(null, { input: { ...input, token, newPassword: 'coucou0%' } }, this.ctx);
     const { password } = await this.db.findOne(User, { id: user.id });
-    expect(resp.message).to.be.equal('Password.updated');
+    expect(resp.message).to.be.equal('User.passwordUpdated');
     expect(resp.code).to.be.equal('200');
     expect(resp.success).to.be.equal(true);
     expect(password).to.not.be.equal(user.password);

@@ -15,7 +15,7 @@ const cancelReservation = async (_, args: { input: Input }, ctx): Promise<IMutat
     await ctx.db.delete(Reservation, input.id);
     return { code: '200', success: true, message: 'Reservation.canceled' };
   } catch (e) {
-    return { code: '500', success: false, message: 'Server.IntervalServerError' };
+    return { code: '500', success: false, message: 'Error.intervalServerError' };
   }
 };
 

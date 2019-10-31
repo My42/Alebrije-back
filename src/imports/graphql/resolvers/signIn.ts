@@ -14,15 +14,15 @@ const signIn = async (_, args: { input: signInArgs }, ctx) : Promise<SignInMutat
   const { email, password } : signInArgs = args.input;
   try {
     const user = await ctx.db.findOne(User, { email });
-    if (!user) return { code: '401', success: false, message: 'Invalid email or password' };
-    if (!await compare(password, user.password)) return { code: '401', success: false, message: 'Invalid email or password' };
+    if (!user) return { code: '401', success: false, message: 'Error.invalid.emailOrPassword' };
+    if (!await compare(password, user.password)) return { code: '401', success: false, message: 'Error.invalid.emailOrPassword' };
     const token = await sign({ user }, config.jwtSecretKey, { expiresIn: '2 days' });
     // @ts-ignore
     return {
-      code: '200', success: true, message: 'Authentication succeed', me: omit(user, 'password'), token,
+      code: '200', success: true, message: 'Authentication.succeed', me: omit(user, 'password'), token,
     };
   } catch (e) {
-    return { code: '500', message: 'Interal Server Error', success: false };
+    return { code: '500', message: 'Error.intervalServerError', success: false };
   }
 };
 

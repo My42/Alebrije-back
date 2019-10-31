@@ -28,7 +28,7 @@ describe('signIn resolver', () => {
 
     const resp = await signInResolver(null, { input }, { db: this.db });
     expect(resp.code).to.be.equal('200');
-    expect(resp.message).to.be.equal('Authentication succeed');
+    expect(resp.message).to.be.equal('Authentication.succeed');
     expect(resp.success).to.be.equal(true);
     expect(resp.token).to.not.be.equal(null);
     expect(resp.token).to.be.a('string');
@@ -46,6 +46,6 @@ describe('signIn resolver', () => {
     const resp = await signInResolver(null, { input }, { db: this.db });
     expect(resp.code).to.be.equal('401');
     expect(resp.success).to.be.equal(false);
-    expect(resp.message).to.be.equal('Invalid email or password');
+    expect(resp.message).to.be.equal('Error.invalid.emailOrPassword');
   });
 });

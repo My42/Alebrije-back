@@ -16,7 +16,7 @@ const resolver = async (_, args: Args, ctx): Promise<IMutationResponse> => {
 
   await ctx.pubSub.publish(triggerName,
     { onReserving: { reservedTableCount: -reservedTableCount } });
-  return { code: '200', success: true, message: 'All client have been notified' };
+  return { code: '200', success: true, message: 'Users.notified' };
 };
 
 export default resolver;
