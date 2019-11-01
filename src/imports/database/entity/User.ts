@@ -56,6 +56,9 @@ class User {
   @BeforeInsert()
   @BeforeUpdate()
   async hashPassword() {
+    if (!this.password.match(/(?=.*[0-9])(?=.*[!-/])(?=.{8,})/)) {
+      throw new AlebrijeError('400', 'Invalid password');
+    }
     this.password = await hash(this.password, parseInt(process.env.BCRYPT_SALT, 10) || 8);
   }
 }

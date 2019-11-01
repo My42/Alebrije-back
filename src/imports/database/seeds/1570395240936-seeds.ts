@@ -19,7 +19,7 @@ export class seeds1570395240936 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.query('TRUNCATE TABLE public."drinkOrder" RESTART IDENTITY CASCADE;');
+    await queryRunner.query('TRUNCATE TABLE public.user RESTART IDENTITY CASCADE;');
     await queryRunner.query('TRUNCATE TABLE public.drink RESTART IDENTITY CASCADE;');
     await queryRunner.query('TRUNCATE TABLE public.reservation RESTART IDENTITY CASCADE;');
     await queryRunner.query('TRUNCATE TABLE public."drinkOrder" RESTART IDENTITY CASCADE;');

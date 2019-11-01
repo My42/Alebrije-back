@@ -21,12 +21,12 @@ const addReservation = async (_, args, ctx): Promise<IMutationResponse> => {
   let date = null;
   try {
     date = formatDate(input.date);
-    if (new Date(date) <= new Date()) throw new Error('Invalid.date');
+    if (new Date(date) <= new Date()) throw new Error('Error.invalid.date');
   } catch (e) {
-    return { code: '400', success: false, message: 'Invalid.date' };
+    return { code: '400', success: false, message: 'Error.invalid.date' };
   }
 
-  if (!checkTableNumber(input.tableNumber)) return { code: '400', success: false, message: 'Invalid.tableNumber' };
+  if (!checkTableNumber(input.tableNumber)) return { code: '400', success: false, message: 'Error.invalid.tableNumber' };
 
   const reservation = new Reservation({ date, tableNumber: input.tableNumber, userId: user.id });
   try {
@@ -50,7 +50,7 @@ const addReservation = async (_, args, ctx): Promise<IMutationResponse> => {
       await ctx.db.save(drinkOrders);
     } catch (e) {
       await ctx.db.delete(Reservation, reservation.id);
-      return { code: '400', success: false, message: 'Invalid.drink' };
+      return { code: '400', success: false, message: 'Error.invalid.drink' };
     }
   }
   return { code: '200', success: true, message: 'Reservation.added' };

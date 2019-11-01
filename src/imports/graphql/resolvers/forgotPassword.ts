@@ -37,7 +37,7 @@ const updatePassword = async (user: User,
   user.password = input.newPassword;
   await ctx.db.save(user);
   await ctx.db.delete(Token, { id: token.id });
-  return { success: true, code: '200', message: 'Password.updated' };
+  return { success: true, code: '200', message: 'User.passwordUpdated' };
 };
 
 const forgotPassword = async (_, args, ctx): Promise<ForgotPasswordResponse> => {

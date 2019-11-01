@@ -17,7 +17,7 @@ export const formatTriggerName = (dateValue: string) => {
 export default async function onReserving(_, args: reservingInput, ctx) {
   const user = await ctx.getUser(ctx.jwtToken, ctx.db);
   try {
-    logger.info('onReserving !', formatTriggerName(args.date), user);
+    logger.info(`onReserving ! ${formatTriggerName(args.date)} ${user.id}`);
     return withCancel(
       ctx.pubSub.asyncIterator(formatTriggerName(args.date)),
       () => {

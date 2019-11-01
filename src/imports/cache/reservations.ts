@@ -5,7 +5,7 @@ import logger from '../logger';
 const cache = new NodeCache({ checkperiod: 1 });
 
 export const config = {
-  ttl: '600', // 5 minutes
+  ttl: '300', // 5 minutes
 };
 
 export interface cacheValueReservation {
@@ -26,5 +26,9 @@ cache.on('del', async (key, value) => {
   logger.info('[del]', { key, value });
 });
 cache.on('expired', (key, value) => logger.info('[expired]', { key, value }));
+
+export const getKeysByTriggerName = triggerName => (
+  cache.keys().filter(key => key.includes(triggerName))
+);
 
 export default cache;

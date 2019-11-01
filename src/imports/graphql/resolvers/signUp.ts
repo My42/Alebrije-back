@@ -14,7 +14,7 @@ const signUp = async (_, args: { input: signUpArgs }, ctx) : Promise<IMutationRe
   try {
     const user = new User({ email, fullName, password });
     await ctx.db.save(user);
-    return ({ code: '200', success: true, message: 'Sign up Succeed' });
+    return ({ code: '200', success: true, message: 'SignUp.succeed' });
   } catch (e) {
     if (e instanceof AlebrijeError) {
       return { code: e.code, success: false, message: e.message };
