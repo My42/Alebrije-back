@@ -10,7 +10,8 @@ export interface DrinkOrder {
 
 export interface AddReservationInput {
   date: string;
-  drinkOrders?: [DrinkOrder]
+  drinkOrders?: [DrinkOrder];
+  tableCount: number;
 }
 
 const addReservation = async (_, args, ctx): Promise<IMutationResponse> => {
@@ -24,7 +25,7 @@ const addReservation = async (_, args, ctx): Promise<IMutationResponse> => {
     return { code: '400', success: false, message: 'Error.invalid.date' };
   }
 
-  const reservation = new Reservation({ date, userId: user.id });
+  const reservation = new Reservation({ date, userId: user.id, tableCount: input.tableCount });
   await ctx.db.save(reservation);
 
   if (input.drinkOrders) {
