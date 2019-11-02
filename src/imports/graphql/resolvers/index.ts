@@ -10,10 +10,12 @@ import stopReserving from './stopReserving';
 import updateAccount from './updateAccount';
 import deleteAccount from './deleteAccount';
 import drinks from './drinks';
+import me from './me';
 
 const resolvers = {
   Query: {
     drinks,
+    me,
     reservations,
   },
   Mutation: {

@@ -136,6 +136,7 @@ const typedefs = gql`
     type Query {
         reservations(input: ReservationsQueryInput!) : [Reservation]
         drinks : [Drink]!
+        me: User!
     }
 
     type Mutation {
