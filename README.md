@@ -4,6 +4,10 @@ This project has been made for the Javascript Fullstack module at Epitech during
 
 It's a web app to order tables and drinks at the famous night club _El Alebrije_.
 
+This github repository is the app's back
+
+To see the front : [Alebrije Front-End](https://github.com/benjyup/Alebrije-front)
+
 ## Getting Started
 These instruction will get you a copy of the project and you'll be able to run it on your local machine for development and testing purpose. See [deployment](#deployement) for notes on how to deploy on a live system
 
