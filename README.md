@@ -11,7 +11,7 @@ These instruction will get you a copy of the project and you'll be able to run i
 
 * Node `>8.11.4`
 * Yarn `>1.17.3`
-* Postgres `^11.5`
+* PostgreSQL `^11.5`
 
 #### Installing
 Install all the dependencies
@@ -19,9 +19,24 @@ Install all the dependencies
 $ yarn install
 ```
 
+Create the PostgreSQL database named `alebrije`
+```postgres-sql
+CREATE DATABASE alebrije;
+```
+
+Run the migrations
+```
+$ yarn run migration.up
+```
+
+Run the seeds
+```
+$ yarn run seed.run
+```
+
 #### Running the tests
 
-Before running all the tests you have to create a database called `test_alebrije`
+Before running all the tests you have to create a database named `test_alebrije`
 ```postgres-sql
 CREATE DATABASE test_alebrije;
 ```

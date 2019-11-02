@@ -59,9 +59,10 @@ const typedefs = gql`
     }
     
     type Reservation {
-        id: Int!,
-        date: String!,
+        id: Int!
+        date: String!
         drinkOrders: [DrinkOrder]
+        tableCount: Int!
     }
     
     type DrinkOrder {
@@ -115,7 +116,7 @@ const typedefs = gql`
     
     input AddReservationMutationInput {
         date: String
-        tableNumber: Int
+        tableCount: Int
         drinkOrders: [DrinkOrderInput]
     }
     
