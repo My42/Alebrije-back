@@ -61,7 +61,6 @@ const typedefs = gql`
     type Reservation {
         id: Int!,
         date: String!,
-        tableNumber: Int!,
         drinkOrders: [DrinkOrder]
     }
     

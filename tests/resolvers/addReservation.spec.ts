@@ -82,7 +82,7 @@ describe('addReservation resolver', () => {
     expect(getUser.callCount).to.be.equal(invalidDates.length);
   });
 
-  it('should fail for table already taken', async () => {
+  /* it('should fail for table already taken', async () => {
     const getUser = sinon.fake.returns(new Promise<User>(resolve => resolve(user)));
     const ctx = { getUser, db: this.db, jwtToken };
     const input: AddReservationInput = {
@@ -95,7 +95,7 @@ describe('addReservation resolver', () => {
     expect(resp.code).to.be.equal('403');
     expect(resp.message).to.be.equal('Table.alreadyTaken');
     expect(resp.success).to.be.equal(false);
-  });
+  }); */
 
   it('should fail for invalid drink', async () => {
     const getUser = sinon.fake.returns(new Promise<User>(resolve => resolve(user)));

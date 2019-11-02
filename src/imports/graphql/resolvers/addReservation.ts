@@ -1,7 +1,6 @@
 import IMutationResponse from '../interfaces/IMutationResponse';
 import DrinkOrderEntity from '../../database/entity/DrinkOrder';
 import Reservation from '../../database/entity/Reservation';
-import checkTableNumber from '../../utils/checkTableNumber';
 import formatDate from '../../utils/formatDate';
 
 export interface DrinkOrder {
@@ -11,7 +10,6 @@ export interface DrinkOrder {
 
 export interface AddReservationInput {
   date: string;
-  tableNumber: number;
   drinkOrders?: [DrinkOrder]
 }
 
@@ -26,14 +24,8 @@ const addReservation = async (_, args, ctx): Promise<IMutationResponse> => {
     return { code: '400', success: false, message: 'Error.invalid.date' };
   }
 
-  if (!checkTableNumber(input.tableNumber)) return { code: '400', success: false, message: 'Error.invalid.tableNumber' };
-
-  const reservation = new Reservation({ date, tableNumber: input.tableNumber, userId: user.id });
-  try {
-    await ctx.db.save(reservation);
-  } catch (e) {
-    return { code: '403', success: false, message: 'Table.alreadyTaken' };
-  }
+  const reservation = new Reservation({ date, userId: user.id });
+  await ctx.db.save(reservation);
 
   if (input.drinkOrders) {
     const drinkOrders: DrinkOrderEntity[] = input.drinkOrders.reduce(
