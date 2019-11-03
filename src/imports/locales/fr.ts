@@ -2,6 +2,16 @@ export default {
   Authentication: {
     succeed: 'Authentification réussi',
   },
+  Drink: {
+    coke: 'Coca Cola',
+    iceTea: 'Ice Tea',
+    pepsi: 'Pepsi',
+    water: 'Eau',
+    balentines: "Balentine's",
+    sirEdward: "Sir Edward's",
+    captainMorgan: 'Captain Morgan',
+    absolut: 'Absolut',
+  },
   Error: {
     forbidden: 'Action non-autorisée',
     invalid: {
