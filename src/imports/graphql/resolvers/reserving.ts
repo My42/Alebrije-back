@@ -1,7 +1,7 @@
 import reduce from 'lodash/reduce';
 import IMutationResponse from '../interfaces/IMutationResponse';
 import { formatTriggerName } from '../subscriptions/onReserving';
-import cache, {setKey, getKeysByTriggerName, cacheValueReservation} from '../../cache/reservations';
+import cache, { setKey, getKeysByTriggerName } from '../../cache/reservations';
 import info from '../../constants/alebrijeInfo';
 
 export interface ReservingInput {
