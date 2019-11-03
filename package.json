@@ -48,7 +48,7 @@
       "winston": "^3.2.1"
    },
    "scripts": {
-      "start": "yarn run migration.up && ts-node src/app.ts",
+      "start": "yarn run migration.up && yarn run seed.revert && yarn run seed.run && ts-node src/app.ts",
       "dev": "npx nodemon ts-node-dev --respawn --transpileOnly ./src/app.ts",
       "prod": "yarn run tsc && node ./build/app.js",
       "test": "NODE_ENV=test npm run test.migration.up && ts-mocha --require node_modules/tsconfig-paths/register tests/**/*.spec.ts -r tests/init.ts",
