@@ -97,5 +97,3 @@ Forbidden by Epitech
 
 #### Authors
 * **Vincent Mesquita** - [Github](https://github.com/My42)
-* **Benjamin Peixoto** - [Github](https://github.com/benjyup)
-* **Fabrice Sepret** - [Github](https://github.com/fsepret)
