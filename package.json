@@ -22,7 +22,7 @@
       "@types/uuid": "^3.4.5",
       "@types/validator": "^10.11.3",
       "aigle": "^1.14.1",
-      "apollo-server": "^2.9.3",
+      "apollo-server": "^2.25.3",
       "bcryptjs": "^2.4.3",
       "chai": "^4.2.0",
       "class-validator": "^0.10.0",
